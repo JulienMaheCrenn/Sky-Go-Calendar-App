@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E05581F42993EC0500E08769 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E05581F32993EC0500E08769 /* GoogleService-Info.plist */; };
+		E05581F72993EF3D00E08769 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = E05581F62993EF3D00E08769 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		E05581F92993EF3D00E08769 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E05581F82993EF3D00E08769 /* FirebaseAuth */; };
+		E05581FB2993EF3D00E08769 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E05581FA2993EF3D00E08769 /* FirebaseFirestore */; };
 		E0A27EF629928C1600351EDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A27EF529928C1600351EDF /* AppDelegate.swift */; };
 		E0A27EF829928C1600351EDF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A27EF729928C1600351EDF /* SceneDelegate.swift */; };
 		E0A27EFA29928C1600351EDF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A27EF929928C1600351EDF /* ViewController.swift */; };
@@ -15,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E05581F32993EC0500E08769 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E0A27EF229928C1600351EDF /* Sky Go iOS Calendar App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sky Go iOS Calendar App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0A27EF529928C1600351EDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0A27EF729928C1600351EDF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -29,6 +34,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E05581F72993EF3D00E08769 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				E05581F92993EF3D00E08769 /* FirebaseAuth in Frameworks */,
+				E05581FB2993EF3D00E08769 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +68,7 @@
 				E0A27EFE29928C1900351EDF /* Assets.xcassets */,
 				E0A27F0029928C1900351EDF /* LaunchScreen.storyboard */,
 				E0A27F0329928C1900351EDF /* Info.plist */,
+				E05581F32993EC0500E08769 /* GoogleService-Info.plist */,
 			);
 			path = "Sky Go iOS Calendar App";
 			sourceTree = "<group>";
@@ -80,6 +89,11 @@
 			dependencies = (
 			);
 			name = "Sky Go iOS Calendar App";
+			packageProductDependencies = (
+				E05581F62993EF3D00E08769 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				E05581F82993EF3D00E08769 /* FirebaseAuth */,
+				E05581FA2993EF3D00E08769 /* FirebaseFirestore */,
+			);
 			productName = "Sky Go iOS Calendar App";
 			productReference = E0A27EF229928C1600351EDF /* Sky Go iOS Calendar App.app */;
 			productType = "com.apple.product-type.application";
@@ -108,6 +122,9 @@
 				Base,
 			);
 			mainGroup = E0A27EE929928C1600351EDF;
+			packageReferences = (
+				E05581F52993EF3D00E08769 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = E0A27EF329928C1600351EDF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -124,6 +141,7 @@
 			files = (
 				E0A27F0229928C1900351EDF /* LaunchScreen.storyboard in Resources */,
 				E0A27EFF29928C1900351EDF /* Assets.xcassets in Resources */,
+				E05581F42993EC0500E08769 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +360,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E05581F52993EF3D00E08769 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E05581F62993EF3D00E08769 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E05581F52993EF3D00E08769 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		E05581F82993EF3D00E08769 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E05581F52993EF3D00E08769 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		E05581FA2993EF3D00E08769 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E05581F52993EF3D00E08769 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E0A27EEA29928C1600351EDF /* Project object */;
 }
