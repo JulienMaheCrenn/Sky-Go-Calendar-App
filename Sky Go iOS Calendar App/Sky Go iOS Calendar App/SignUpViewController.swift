@@ -28,7 +28,7 @@ class SignUpViewController: UIViewController {
         view.addSubview(signUpButton)
         
         signUpButton.configuration = .filled()
-        signUpButton.configuration?.baseBackgroundColor = .green
+        signUpButton.configuration?.baseBackgroundColor = .systemOrange
         signUpButton.configuration?.title = "Sign Up"
         signUpButton.configuration?.baseForegroundColor = .black
         
@@ -38,7 +38,9 @@ class SignUpViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            signUpButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50)
+            signUpButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
+            signUpButton.widthAnchor.constraint(equalToConstant: 200),
+            signUpButton.heightAnchor.constraint(equalToConstant: 50),
         ])
         
         
@@ -74,12 +76,10 @@ class SignUpViewController: UIViewController {
         view.addSubview(usernameLabel)
         view.addSubview(passwordLabel)
         
-        usernameLabel.text = "Username"
-        usernameLabel.backgroundColor = .blue
+        usernameLabel.text = "Username:"
         usernameLabel.textAlignment = .left
         
-        passwordLabel.text = "Password"
-        passwordLabel.backgroundColor = .blue
+        passwordLabel.text = "Password:"
         passwordLabel.textAlignment = .left
         
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -103,10 +103,10 @@ class SignUpViewController: UIViewController {
         view.addSubview(usernameTextInput)
         view.addSubview(passwordTextInput)
         
-        usernameTextInput.backgroundColor = .red
+        usernameTextInput.borderStyle = .roundedRect
         usernameTextInput.textColor = .white
         
-        passwordTextInput.backgroundColor = .red
+        passwordTextInput.borderStyle = .roundedRect
         passwordTextInput.textColor = .white
         
         usernameTextInput.translatesAutoresizingMaskIntoConstraints = false

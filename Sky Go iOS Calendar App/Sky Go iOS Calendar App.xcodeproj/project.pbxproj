@@ -13,6 +13,7 @@
 		E05581FB2993EF3D00E08769 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E05581FA2993EF3D00E08769 /* FirebaseFirestore */; };
 		E05582012995257800E08769 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05582002995257800E08769 /* LogInViewController.swift */; };
 		E05582032995265A00E08769 /* InitialScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05582022995265A00E08769 /* InitialScreenViewController.swift */; };
+		E055820729954ADF00E08769 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E055820629954ADF00E08769 /* HomeViewController.swift */; };
 		E0A27EF629928C1600351EDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A27EF529928C1600351EDF /* AppDelegate.swift */; };
 		E0A27EF829928C1600351EDF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A27EF729928C1600351EDF /* SceneDelegate.swift */; };
 		E0A27EFA29928C1600351EDF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A27EF929928C1600351EDF /* SignUpViewController.swift */; };
@@ -24,6 +25,7 @@
 		E05581F32993EC0500E08769 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E05582002995257800E08769 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		E05582022995265A00E08769 /* InitialScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialScreenViewController.swift; sourceTree = "<group>"; };
+		E055820629954ADF00E08769 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E0A27EF229928C1600351EDF /* Sky Go iOS Calendar App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sky Go iOS Calendar App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0A27EF529928C1600351EDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0A27EF729928C1600351EDF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 			children = (
 				E0A27EF529928C1600351EDF /* AppDelegate.swift */,
 				E0A27EF729928C1600351EDF /* SceneDelegate.swift */,
+				E055820629954ADF00E08769 /* HomeViewController.swift */,
 				E05582022995265A00E08769 /* InitialScreenViewController.swift */,
 				E0A27EF929928C1600351EDF /* SignUpViewController.swift */,
 				E05582002995257800E08769 /* LogInViewController.swift */,
@@ -163,6 +166,7 @@
 				E05582032995265A00E08769 /* InitialScreenViewController.swift in Sources */,
 				E0A27EF629928C1600351EDF /* AppDelegate.swift in Sources */,
 				E0A27EF829928C1600351EDF /* SceneDelegate.swift in Sources */,
+				E055820729954ADF00E08769 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
