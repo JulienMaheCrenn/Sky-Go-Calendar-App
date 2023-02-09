@@ -11,19 +11,23 @@
 		E05581F72993EF3D00E08769 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = E05581F62993EF3D00E08769 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		E05581F92993EF3D00E08769 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E05581F82993EF3D00E08769 /* FirebaseAuth */; };
 		E05581FB2993EF3D00E08769 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E05581FA2993EF3D00E08769 /* FirebaseFirestore */; };
+		E05582012995257800E08769 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05582002995257800E08769 /* LogInViewController.swift */; };
+		E05582032995265A00E08769 /* InitialScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05582022995265A00E08769 /* InitialScreenViewController.swift */; };
 		E0A27EF629928C1600351EDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A27EF529928C1600351EDF /* AppDelegate.swift */; };
 		E0A27EF829928C1600351EDF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A27EF729928C1600351EDF /* SceneDelegate.swift */; };
-		E0A27EFA29928C1600351EDF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A27EF929928C1600351EDF /* ViewController.swift */; };
+		E0A27EFA29928C1600351EDF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A27EF929928C1600351EDF /* SignUpViewController.swift */; };
 		E0A27EFF29928C1900351EDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0A27EFE29928C1900351EDF /* Assets.xcassets */; };
 		E0A27F0229928C1900351EDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0A27F0029928C1900351EDF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E05581F32993EC0500E08769 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E05582002995257800E08769 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		E05582022995265A00E08769 /* InitialScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialScreenViewController.swift; sourceTree = "<group>"; };
 		E0A27EF229928C1600351EDF /* Sky Go iOS Calendar App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sky Go iOS Calendar App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0A27EF529928C1600351EDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0A27EF729928C1600351EDF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E0A27EF929928C1600351EDF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E0A27EF929928C1600351EDF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E0A27EFE29928C1900351EDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E0A27F0129928C1900351EDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E0A27F0329928C1900351EDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -64,7 +68,9 @@
 			children = (
 				E0A27EF529928C1600351EDF /* AppDelegate.swift */,
 				E0A27EF729928C1600351EDF /* SceneDelegate.swift */,
-				E0A27EF929928C1600351EDF /* ViewController.swift */,
+				E05582022995265A00E08769 /* InitialScreenViewController.swift */,
+				E0A27EF929928C1600351EDF /* SignUpViewController.swift */,
+				E05582002995257800E08769 /* LogInViewController.swift */,
 				E0A27EFE29928C1900351EDF /* Assets.xcassets */,
 				E0A27F0029928C1900351EDF /* LaunchScreen.storyboard */,
 				E0A27F0329928C1900351EDF /* Info.plist */,
@@ -152,7 +158,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0A27EFA29928C1600351EDF /* ViewController.swift in Sources */,
+				E05582012995257800E08769 /* LogInViewController.swift in Sources */,
+				E0A27EFA29928C1600351EDF /* SignUpViewController.swift in Sources */,
+				E05582032995265A00E08769 /* InitialScreenViewController.swift in Sources */,
 				E0A27EF629928C1600351EDF /* AppDelegate.swift in Sources */,
 				E0A27EF829928C1600351EDF /* SceneDelegate.swift in Sources */,
 			);

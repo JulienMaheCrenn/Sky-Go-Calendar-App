@@ -1,22 +1,58 @@
 
 import UIKit
+import FirebaseAuth
 
-class ViewController: UIViewController {
+class SignUpViewController: UIViewController {
     
     let skyLogo = UIImageView()
     let usernameLabel = UILabel()
     let usernameTextInput = UITextField()
     let passwordLabel = UILabel()
     let passwordTextInput = UITextField()
-    
+    let signUpButton = UIButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Sign Up"
+        view.backgroundColor = .systemBackground
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
         setupLogo()
         setupLabels()
         setupTextFields()
-
+        setupButton()
+    }
+    
+    func setupButton() {
+        view.addSubview(signUpButton)
+        
+        signUpButton.configuration = .filled()
+        signUpButton.configuration?.baseBackgroundColor = .green
+        signUpButton.configuration?.title = "Sign Up"
+        signUpButton.configuration?.baseForegroundColor = .black
+        
+        signUpButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        
+        signUpButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            signUpButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50)
+        ])
+        
+        
+    }
+    
+    
+    @objc func handleSignUp() {
+        let email:String = usernameTextInput.text!
+        let password:String = passwordTextInput.text!
+        
+        Auth.auth().createUser(withEmail: email, password: password) {authResult, error in
+            print(authResult ?? "No Data")
+        }
+        
     }
     
     func setupLogo() {
@@ -39,11 +75,11 @@ class ViewController: UIViewController {
         view.addSubview(passwordLabel)
         
         usernameLabel.text = "Username"
-        usernameLabel.backgroundColor = .green
+        usernameLabel.backgroundColor = .blue
         usernameLabel.textAlignment = .left
         
         passwordLabel.text = "Password"
-        passwordLabel.backgroundColor = .green
+        passwordLabel.backgroundColor = .blue
         passwordLabel.textAlignment = .left
         
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
