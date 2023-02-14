@@ -7,22 +7,62 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 
 class HomeViewController: UIViewController {
     
+    let database = Database.database(url:"https://sky-go-hybrid-calendar-app-default-rtdb.europe-west1.firebasedatabase.app").reference()
+    
     let logOutButton = UIButton()
     
     let loginLabel = UILabel()
+    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(loginLabel)
-        view.backgroundColor = .systemPink
-        loginLabel.text = "Hello you are logged in"
+        
+        view.backgroundColor = .systemCyan
+        
+        setupLabel()
         setupButton()
     }
     
+    func setupLabel () {
+        view.addSubview(loginLabel)
+        
+        loginLabel.backgroundColor = .systemOrange
+        
+        Auth.auth().addStateDidChangeListener { auth, user in
+            if Auth.auth().currentUser != nil {
+                self.database.child("users").child(Auth.auth().currentUser!.uid).child("name").observeSingleEvent(of: .value, with: {snapshot in
+                    guard let value = snapshot.value as? String else {
+                        self.loginLabel.text = "Unable to retrieve user name"
+                        return
+                    }
+                    self.loginLabel.text = "Hello you are logged in as: \(value)"
+                })
+            } else {
+                return
+            }
+
+
+        }
+        
+
+        
+        loginLabel.textAlignment = .center
+        loginLabel.numberOfLines = 0
+        
+        loginLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            loginLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginLabel.widthAnchor.constraint(equalToConstant: 200),
+        ])
+    }
 
     func setupButton() {
         view.addSubview(logOutButton)

@@ -2,7 +2,7 @@
 
 import UIKit
 
-class InitialScreenViewController: UIViewController {
+class UserSignInViewController: UIViewController {
     
     let skyLogo = UIImageView()
     

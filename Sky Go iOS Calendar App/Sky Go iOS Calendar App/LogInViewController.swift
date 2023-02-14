@@ -45,13 +45,8 @@ class LogInViewController: UIViewController {
         logInButton.configuration?.title = "Log In"
         logInButton.configuration?.baseForegroundColor = .black
         
-        logOutButton.configuration = .filled()
-        logOutButton.configuration?.baseBackgroundColor = .systemRed
-        logOutButton.configuration?.title = "Log Out"
-        logOutButton.configuration?.baseForegroundColor = .black
         
         logInButton.addTarget(self, action: #selector(handleLogIn), for: .touchUpInside)
-        logOutButton.addTarget(self, action: #selector(handleLogOut), for: .touchUpInside)
         
         logInButton.translatesAutoresizingMaskIntoConstraints = false
         logOutButton.translatesAutoresizingMaskIntoConstraints = false
@@ -62,10 +57,6 @@ class LogInViewController: UIViewController {
             logInButton.widthAnchor.constraint(equalToConstant: 200),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
             
-            logOutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logOutButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 50),
-            logOutButton.widthAnchor.constraint(equalToConstant: 200),
-            logOutButton.heightAnchor.constraint(equalToConstant: 50),
         ])
         
         
@@ -79,20 +70,11 @@ class LogInViewController: UIViewController {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
           guard let _ = self else { return }
             
-        }
-        
-    }
-    
-
-    
-    @objc func handleLogOut() {
-            let firebaseAuth = Auth.auth()
-        do {
-          try firebaseAuth.signOut()
-        } catch let signOutError as NSError {
-          print("Error signing out: %@", signOutError)
+            
+            
         }
     }
+    
     
     func setupLogo() {
         skyLogo.image = UIImage(named: "skyLogo")
@@ -142,9 +124,13 @@ class LogInViewController: UIViewController {
         
         usernameTextInput.borderStyle = .roundedRect
         usernameTextInput.textColor = .black
+        usernameTextInput.autocorrectionType = UITextAutocorrectionType.no
+        usernameTextInput.autocapitalizationType = UITextAutocapitalizationType.none
         
         passwordTextInput.borderStyle = .roundedRect
         passwordTextInput.textColor = .black
+        passwordTextInput.autocorrectionType = UITextAutocorrectionType.no
+        passwordTextInput.autocapitalizationType = UITextAutocapitalizationType.none
         
         usernameTextInput.translatesAutoresizingMaskIntoConstraints = false
         passwordTextInput.translatesAutoresizingMaskIntoConstraints = false

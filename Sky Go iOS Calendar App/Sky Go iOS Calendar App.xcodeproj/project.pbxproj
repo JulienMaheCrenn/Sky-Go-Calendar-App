@@ -7,24 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ABC4D4F7603FE92E71E2FA22 /* Pods_Sky_Go_iOS_Calendar_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE96BD800766BE0BCE1C630 /* Pods_Sky_Go_iOS_Calendar_App.framework */; };
 		E05581F42993EC0500E08769 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E05581F32993EC0500E08769 /* GoogleService-Info.plist */; };
 		E05581F72993EF3D00E08769 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = E05581F62993EF3D00E08769 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		E05581F92993EF3D00E08769 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E05581F82993EF3D00E08769 /* FirebaseAuth */; };
 		E05581FB2993EF3D00E08769 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E05581FA2993EF3D00E08769 /* FirebaseFirestore */; };
 		E05582012995257800E08769 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05582002995257800E08769 /* LogInViewController.swift */; };
-		E05582032995265A00E08769 /* InitialScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05582022995265A00E08769 /* InitialScreenViewController.swift */; };
+		E05582032995265A00E08769 /* UserSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05582022995265A00E08769 /* UserSignInViewController.swift */; };
 		E055820729954ADF00E08769 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E055820629954ADF00E08769 /* HomeViewController.swift */; };
 		E0A27EF629928C1600351EDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A27EF529928C1600351EDF /* AppDelegate.swift */; };
 		E0A27EF829928C1600351EDF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A27EF729928C1600351EDF /* SceneDelegate.swift */; };
 		E0A27EFA29928C1600351EDF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A27EF929928C1600351EDF /* SignUpViewController.swift */; };
 		E0A27EFF29928C1900351EDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0A27EFE29928C1900351EDF /* Assets.xcassets */; };
 		E0A27F0229928C1900351EDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0A27F0029928C1900351EDF /* LaunchScreen.storyboard */; };
+		E0AA643A299A681C008B8864 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = E0AA6439299A681C008B8864 /* FirebaseDatabase */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4AE96BD800766BE0BCE1C630 /* Pods_Sky_Go_iOS_Calendar_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sky_Go_iOS_Calendar_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E4C9282A01B950B495DCAA0 /* Pods-Sky Go iOS Calendar App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sky Go iOS Calendar App.release.xcconfig"; path = "Target Support Files/Pods-Sky Go iOS Calendar App/Pods-Sky Go iOS Calendar App.release.xcconfig"; sourceTree = "<group>"; };
+		C131EDA26C5646F70F2C2AA7 /* Pods-Sky Go iOS Calendar App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sky Go iOS Calendar App.debug.xcconfig"; path = "Target Support Files/Pods-Sky Go iOS Calendar App/Pods-Sky Go iOS Calendar App.debug.xcconfig"; sourceTree = "<group>"; };
 		E05581F32993EC0500E08769 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E05582002995257800E08769 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
-		E05582022995265A00E08769 /* InitialScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialScreenViewController.swift; sourceTree = "<group>"; };
+		E05582022995265A00E08769 /* UserSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSignInViewController.swift; sourceTree = "<group>"; };
 		E055820629954ADF00E08769 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E0A27EF229928C1600351EDF /* Sky Go iOS Calendar App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sky Go iOS Calendar App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0A27EF529928C1600351EDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,7 +47,9 @@
 			files = (
 				E05581F72993EF3D00E08769 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				E05581F92993EF3D00E08769 /* FirebaseAuth in Frameworks */,
+				E0AA643A299A681C008B8864 /* FirebaseDatabase in Frameworks */,
 				E05581FB2993EF3D00E08769 /* FirebaseFirestore in Frameworks */,
+				ABC4D4F7603FE92E71E2FA22 /* Pods_Sky_Go_iOS_Calendar_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +61,8 @@
 			children = (
 				E0A27EF429928C1600351EDF /* Sky Go iOS Calendar App */,
 				E0A27EF329928C1600351EDF /* Products */,
+				E0AA6438299A681C008B8864 /* Frameworks */,
+				F7B30FCD820BCE309898E970 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,7 +80,7 @@
 				E0A27EF529928C1600351EDF /* AppDelegate.swift */,
 				E0A27EF729928C1600351EDF /* SceneDelegate.swift */,
 				E055820629954ADF00E08769 /* HomeViewController.swift */,
-				E05582022995265A00E08769 /* InitialScreenViewController.swift */,
+				E05582022995265A00E08769 /* UserSignInViewController.swift */,
 				E0A27EF929928C1600351EDF /* SignUpViewController.swift */,
 				E05582002995257800E08769 /* LogInViewController.swift */,
 				E0A27EFE29928C1900351EDF /* Assets.xcassets */,
@@ -82,6 +91,24 @@
 			path = "Sky Go iOS Calendar App";
 			sourceTree = "<group>";
 		};
+		E0AA6438299A681C008B8864 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4AE96BD800766BE0BCE1C630 /* Pods_Sky_Go_iOS_Calendar_App.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F7B30FCD820BCE309898E970 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C131EDA26C5646F70F2C2AA7 /* Pods-Sky Go iOS Calendar App.debug.xcconfig */,
+				9E4C9282A01B950B495DCAA0 /* Pods-Sky Go iOS Calendar App.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -89,9 +116,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E0A27F0629928C1900351EDF /* Build configuration list for PBXNativeTarget "Sky Go iOS Calendar App" */;
 			buildPhases = (
+				9B8A9C12003DE20D1437C35F /* [CP] Check Pods Manifest.lock */,
 				E0A27EEE29928C1600351EDF /* Sources */,
 				E0A27EEF29928C1600351EDF /* Frameworks */,
 				E0A27EF029928C1600351EDF /* Resources */,
+				6039C21527F9E05926448EF5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -102,6 +131,7 @@
 				E05581F62993EF3D00E08769 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				E05581F82993EF3D00E08769 /* FirebaseAuth */,
 				E05581FA2993EF3D00E08769 /* FirebaseFirestore */,
+				E0AA6439299A681C008B8864 /* FirebaseDatabase */,
 			);
 			productName = "Sky Go iOS Calendar App";
 			productReference = E0A27EF229928C1600351EDF /* Sky Go iOS Calendar App.app */;
@@ -156,6 +186,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6039C21527F9E05926448EF5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sky Go iOS Calendar App/Pods-Sky Go iOS Calendar App-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sky Go iOS Calendar App/Pods-Sky Go iOS Calendar App-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sky Go iOS Calendar App/Pods-Sky Go iOS Calendar App-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B8A9C12003DE20D1437C35F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Sky Go iOS Calendar App-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E0A27EEE29928C1600351EDF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -163,7 +235,7 @@
 			files = (
 				E05582012995257800E08769 /* LogInViewController.swift in Sources */,
 				E0A27EFA29928C1600351EDF /* SignUpViewController.swift in Sources */,
-				E05582032995265A00E08769 /* InitialScreenViewController.swift in Sources */,
+				E05582032995265A00E08769 /* UserSignInViewController.swift in Sources */,
 				E0A27EF629928C1600351EDF /* AppDelegate.swift in Sources */,
 				E0A27EF829928C1600351EDF /* SceneDelegate.swift in Sources */,
 				E055820729954ADF00E08769 /* HomeViewController.swift in Sources */,
@@ -300,6 +372,7 @@
 		};
 		E0A27F0729928C1900351EDF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C131EDA26C5646F70F2C2AA7 /* Pods-Sky Go iOS Calendar App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -326,6 +399,7 @@
 		};
 		E0A27F0829928C1900351EDF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E4C9282A01B950B495DCAA0 /* Pods-Sky Go iOS Calendar App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -399,6 +473,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E05581F52993EF3D00E08769 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		E0AA6439299A681C008B8864 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E05581F52993EF3D00E08769 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

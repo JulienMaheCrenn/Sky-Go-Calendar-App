@@ -1,14 +1,30 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
+import DropDown
+
 
 class SignUpViewController: UIViewController {
+    
+    private let database = Database.database(url: "https://sky-go-hybrid-calendar-app-default-rtdb.europe-west1.firebasedatabase.app").reference()
+    
+    let scrollView = UIScrollView()
+    let contentStackView = UIStackView()
     
     let skyLogo = UIImageView()
     let usernameLabel = UILabel()
     let usernameTextInput = UITextField()
     let passwordLabel = UILabel()
     let passwordTextInput = UITextField()
+    let fullNameLabel = UILabel()
+    let fullNameTextInput = UITextField()
+    let jobTitleLabel = UILabel()
+    let jobTitleTextInput = UITextField()
+    let departmentButton = UIButton()
+    let departmentDropdown = DropDown()
+    let locationButton = UIButton()
+    let locationDropdown = DropDown()
     let signUpButton = UIButton()
 
     override func viewDidLoad() {
@@ -19,40 +35,126 @@ class SignUpViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         setupLogo()
-        setupLabels()
-        setupTextFields()
-        setupButton()
+        setupScrollView()
+        setupViews()
+
     }
     
-    func setupButton() {
-        view.addSubview(signUpButton)
+    
+    func setupScrollView() {
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        contentStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentStackView)
+        
+        contentStackView.axis = .vertical
+        contentStackView.spacing = 20.0
+        contentStackView.alignment = .fill
+        contentStackView.distribution = .fillEqually
+        
+        [self.usernameLabel,
+         self.usernameTextInput,
+         self.passwordLabel,
+         self.passwordTextInput,
+         self.fullNameLabel,
+         self.fullNameTextInput,
+         self.jobTitleLabel,
+         self.jobTitleTextInput,
+         self.departmentDropdown,
+         self.departmentButton,
+         self.locationButton,
+         
+         self.signUpButton].forEach {contentStackView.addArrangedSubview($0)}
+        
+        NSLayoutConstraint.activate([
+            scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            scrollView.topAnchor.constraint(equalTo: skyLogo.bottomAnchor, constant: 25),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            contentStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            contentStackView.widthAnchor.constraint(equalToConstant: 300),
+            contentStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+        ])
+    }
+    
+    func setupViews() {
+        setupLabels()
+        setupTextFields()
+        setupButtons()
+        setupDropdowns()
+    }
+    
+    func setupDropdowns() {
+        departmentDropdown.anchorView = departmentButton
+        departmentDropdown.dataSource = ["Sky Go", "Now", "Core", "OVP"]
+        departmentDropdown.direction = .any
+        
+        locationDropdown.anchorView = departmentButton
+        locationDropdown.dataSource = ["Osterley", "Leeds", "Brentwood"]
+        locationDropdown.direction = .any
+        
+        departmentDropdown.selectionAction = { [unowned self] (index: Int, item: String) in
+            self.departmentButton.configuration?.title = "\(item)"
+        }
+        
+        locationDropdown.selectionAction = { [unowned self] (index: Int, item: String) in
+            self.locationButton.configuration?.title = "\(item)"
+        }
+    }
+    
+    func setupButtons() {
         
         signUpButton.configuration = .filled()
         signUpButton.configuration?.baseBackgroundColor = .systemOrange
         signUpButton.configuration?.title = "Sign Up"
         signUpButton.configuration?.baseForegroundColor = .black
         
+        departmentButton.configuration = .borderedProminent()
+        departmentButton.configuration?.baseBackgroundColor = .systemBlue
+        departmentButton.configuration?.title = "Choose Department"
+        departmentButton.configuration?.baseForegroundColor = .black
+        
+        locationButton.configuration = .borderedProminent()
+        locationButton.configuration?.baseBackgroundColor = .systemBlue
+        locationButton.configuration?.title = "Choose Location"
+        locationButton.configuration?.baseForegroundColor = .black
+        
         signUpButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
-        
-        signUpButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            signUpButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
-            signUpButton.widthAnchor.constraint(equalToConstant: 200),
-            signUpButton.heightAnchor.constraint(equalToConstant: 50),
-        ])
-        
+        departmentButton.addTarget(self, action: #selector(handleDepartmentDropdown), for: .touchUpInside)
+        locationButton.addTarget(self, action: #selector(handleLocationDropdown), for: .touchUpInside)
         
     }
     
+    @objc func handleDepartmentDropdown () {
+        departmentDropdown.show()
+    }
+    
+    @objc func handleLocationDropdown () {
+        locationDropdown.show()
+    }
+
     
     @objc func handleSignUp() {
         let email:String = usernameTextInput.text!
         let password:String = passwordTextInput.text!
+        let profile: [String:Any] = [
+            "name": fullNameTextInput.text! as NSObject,
+            "jobTitle": jobTitleTextInput.text!,
+            "department": departmentButton.configuration?.title as Any,
+            "location": locationButton.configuration?.title as Any,
+        ]
+
+        
         
         Auth.auth().createUser(withEmail: email, password: password) {authResult, error in
             print(authResult ?? "No Data")
+            Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+              guard let _ = self else { return }
+                self?.database.child("users").child(Auth.auth().currentUser!.uid).setValue(profile)
+            }
         }
         
     }
@@ -73,8 +175,6 @@ class SignUpViewController: UIViewController {
     }
     
     func setupLabels() {
-        view.addSubview(usernameLabel)
-        view.addSubview(passwordLabel)
         
         usernameLabel.text = "Username:"
         usernameLabel.textAlignment = .left
@@ -82,47 +182,36 @@ class SignUpViewController: UIViewController {
         passwordLabel.text = "Password:"
         passwordLabel.textAlignment = .left
         
-        usernameLabel.translatesAutoresizingMaskIntoConstraints = false
-        passwordLabel.translatesAutoresizingMaskIntoConstraints = false
+        fullNameLabel.text = "Full Name:"
+        fullNameLabel.textAlignment = .left
         
-        NSLayoutConstraint.activate([
-            usernameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            usernameLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100),
-            usernameLabel.widthAnchor.constraint(equalToConstant: 200),
-            usernameLabel.heightAnchor.constraint(equalToConstant: 50),
-            
-            passwordLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            passwordLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 50),
-            passwordLabel.widthAnchor.constraint(equalToConstant: 200),
-            passwordLabel.heightAnchor.constraint(equalToConstant: 50),
-
-        ])
+        jobTitleLabel.text = "Job Title:"
+        jobTitleLabel.textAlignment = .left
+        
+        
     }
     
     func setupTextFields() {
-        view.addSubview(usernameTextInput)
-        view.addSubview(passwordTextInput)
         
         usernameTextInput.borderStyle = .roundedRect
-        usernameTextInput.textColor = .white
+        usernameTextInput.textColor = .black
+        usernameTextInput.autocorrectionType = UITextAutocorrectionType.no
+        usernameTextInput.autocapitalizationType = UITextAutocapitalizationType.none
         
         passwordTextInput.borderStyle = .roundedRect
-        passwordTextInput.textColor = .white
+        passwordTextInput.textColor = .black
+        passwordTextInput.autocorrectionType = UITextAutocorrectionType.no
+        passwordTextInput.autocapitalizationType = UITextAutocapitalizationType.none
         
-        usernameTextInput.translatesAutoresizingMaskIntoConstraints = false
-        passwordTextInput.translatesAutoresizingMaskIntoConstraints = false
+        fullNameTextInput.borderStyle = .roundedRect
+        fullNameTextInput.textColor = .black
+        fullNameTextInput.autocorrectionType = UITextAutocorrectionType.no
+        fullNameTextInput.autocapitalizationType = UITextAutocapitalizationType.words
         
-        NSLayoutConstraint.activate([
-            usernameTextInput.centerYAnchor.constraint(equalTo: usernameLabel.centerYAnchor, constant: 50),
-            usernameTextInput.centerXAnchor.constraint(equalTo: usernameLabel.centerXAnchor),
-            usernameTextInput.widthAnchor.constraint(equalToConstant: 200),
-            usernameTextInput.heightAnchor.constraint(equalToConstant: 50),
-            
-            passwordTextInput.centerYAnchor.constraint(equalTo: passwordLabel.centerYAnchor, constant: 50),
-            passwordTextInput.centerXAnchor.constraint(equalTo: passwordLabel.centerXAnchor),
-            passwordTextInput.widthAnchor.constraint(equalToConstant: 200),
-            passwordTextInput.heightAnchor.constraint(equalToConstant: 50),
-        ])
+        jobTitleTextInput.borderStyle = .roundedRect
+        jobTitleTextInput.textColor = .black
+        jobTitleTextInput.autocapitalizationType = UITextAutocapitalizationType.words
+
     }
 
 }

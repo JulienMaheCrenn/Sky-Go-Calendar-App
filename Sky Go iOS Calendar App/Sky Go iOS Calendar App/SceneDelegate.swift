@@ -11,7 +11,7 @@ import FirebaseAuth
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    let signInNavigationController = UINavigationController(rootViewController: InitialScreenViewController())
+    let signInNavigationController = UINavigationController(rootViewController: UserSignInViewController())
     let homeViewController = UINavigationController(rootViewController: HomeViewController())
     
 
