@@ -14,9 +14,9 @@ class HomeViewController: UIViewController {
     
     let database = Database.database(url:"https://sky-go-hybrid-calendar-app-default-rtdb.europe-west1.firebasedatabase.app").reference()
     
+    let showProfileButton = UIButton()
     let logOutButton = UIButton()
     
-    let loginLabel = UILabel()
     
 
 
@@ -25,47 +25,13 @@ class HomeViewController: UIViewController {
         
         view.backgroundColor = .systemCyan
         
-        setupLabel()
-        setupButton()
+        setupButtons()
     }
     
-    func setupLabel () {
-        view.addSubview(loginLabel)
-        
-        loginLabel.backgroundColor = .systemOrange
-        
-        Auth.auth().addStateDidChangeListener { auth, user in
-            if Auth.auth().currentUser != nil {
-                self.database.child("users").child(Auth.auth().currentUser!.uid).child("name").observeSingleEvent(of: .value, with: {snapshot in
-                    guard let value = snapshot.value as? String else {
-                        self.loginLabel.text = "Unable to retrieve user name"
-                        return
-                    }
-                    self.loginLabel.text = "Hello you are logged in as: \(value)"
-                })
-            } else {
-                return
-            }
 
-
-        }
-        
-
-        
-        loginLabel.textAlignment = .center
-        loginLabel.numberOfLines = 0
-        
-        loginLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            loginLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loginLabel.widthAnchor.constraint(equalToConstant: 200),
-        ])
-    }
-
-    func setupButton() {
+    func setupButtons() {
         view.addSubview(logOutButton)
+        view.addSubview(showProfileButton)
         
 
         logOutButton.configuration = .filled()
@@ -73,15 +39,27 @@ class HomeViewController: UIViewController {
         logOutButton.configuration?.title = "Log Out"
         logOutButton.configuration?.baseForegroundColor = .black
         
+        showProfileButton.configuration = .filled()
+        showProfileButton.configuration?.baseBackgroundColor = .systemGreen
+        showProfileButton.configuration?.baseForegroundColor = .white
+        showProfileButton.configuration?.title = "Show Profile"
+        
         logOutButton.addTarget(self, action: #selector(handleLogOut), for: .touchUpInside)
+        showProfileButton.addTarget(self, action: #selector(handleShowProfile), for: .touchUpInside)
         
         logOutButton.translatesAutoresizingMaskIntoConstraints = false
+        showProfileButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             logOutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logOutButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             logOutButton.widthAnchor.constraint(equalToConstant: 200),
             logOutButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            showProfileButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            showProfileButton.bottomAnchor.constraint(equalTo: logOutButton.topAnchor, constant: -50),
+            showProfileButton.widthAnchor.constraint(equalToConstant: 200),
+            showProfileButton.heightAnchor.constraint(equalToConstant: 50),
         ])
         
         
@@ -94,6 +72,11 @@ class HomeViewController: UIViewController {
         } catch let signOutError as NSError {
           print("Error signing out: %@", signOutError)
         }
+    }
+    
+    @objc func handleShowProfile () {
+        let profileView = ProfileViewController()
+        present(profileView, animated: true)
     }
 
 }

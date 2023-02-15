@@ -146,14 +146,15 @@ class SignUpViewController: UIViewController {
             "department": departmentButton.configuration?.title as Any,
             "location": locationButton.configuration?.title as Any,
         ]
-
-        
         
         Auth.auth().createUser(withEmail: email, password: password) {authResult, error in
-            print(authResult ?? "No Data")
-            Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
-              guard let _ = self else { return }
-                self?.database.child("users").child(Auth.auth().currentUser!.uid).setValue(profile)
+            if (authResult != nil) {
+                Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+                  guard let _ = self else { return }
+                    self?.database.child("users").child(Auth.auth().currentUser!.uid).setValue(profile)
+                }
+            } else {
+                print("Error Signing User Up")
             }
         }
         
