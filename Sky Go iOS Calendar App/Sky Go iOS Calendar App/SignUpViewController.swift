@@ -5,7 +5,7 @@ import FirebaseDatabase
 import DropDown
 
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UIImagePickerControllerDelegate,  UINavigationControllerDelegate {
     
     private let database = Database.database(url: "https://sky-go-hybrid-calendar-app-default-rtdb.europe-west1.firebasedatabase.app").reference()
     
@@ -13,6 +13,8 @@ class SignUpViewController: UIViewController {
     let contentStackView = UIStackView()
     
     let skyLogo = UIImageView()
+    
+    let addProfileImageButton = UIButton()
     let usernameLabel = UILabel()
     let usernameTextInput = UITextField()
     let passwordLabel = UILabel()
@@ -53,7 +55,8 @@ class SignUpViewController: UIViewController {
         contentStackView.alignment = .fill
         contentStackView.distribution = .fillEqually
         
-        [self.usernameLabel,
+        [self.addProfileImageButton,
+         self.usernameLabel,
          self.usernameTextInput,
          self.passwordLabel,
          self.passwordTextInput,
@@ -106,7 +109,15 @@ class SignUpViewController: UIViewController {
     }
     
     func setupButtons() {
+        let addProfileImage  = UIImage(named: "addProfileIcon")
         
+        addProfileImageButton.setImage(addProfileImage?.withRenderingMode(.alwaysOriginal), for: .normal)
+        addProfileImageButton.translatesAutoresizingMaskIntoConstraints = false
+//        addProfileImageButton.contentMode = .scaleAspectFit
+//        NSLayoutConstraint.activate([
+//            addProfileImageButton.heightAnchor.constraint(equalToConstant: 50),
+//        ])
+//
         signUpButton.configuration = .filled()
         signUpButton.configuration?.baseBackgroundColor = .systemOrange
         signUpButton.configuration?.title = "Sign Up"
@@ -122,10 +133,33 @@ class SignUpViewController: UIViewController {
         locationButton.configuration?.title = "Choose Location"
         locationButton.configuration?.baseForegroundColor = .black
         
+        addProfileImageButton.addTarget(self, action: #selector(showProfilePicker), for: .touchUpInside)
         signUpButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
         departmentButton.addTarget(self, action: #selector(handleDepartmentDropdown), for: .touchUpInside)
         locationButton.addTarget(self, action: #selector(handleLocationDropdown), for: .touchUpInside)
         
+    }
+    
+    @objc func showProfilePicker() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        
+        if let sheet = picker.presentationController as? UISheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+            sheet.largestUndimmedDetentIdentifier = .medium
+            sheet.prefersGrabberVisible = true
+        }
+        
+        present(picker, animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {return}
+        addProfileImageButton.setImage(image, for: .normal)
     }
     
     @objc func handleDepartmentDropdown () {

@@ -15,6 +15,12 @@
 		E05582012995257800E08769 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05582002995257800E08769 /* LogInViewController.swift */; };
 		E05582032995265A00E08769 /* UserSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05582022995265A00E08769 /* UserSignInViewController.swift */; };
 		E055820729954ADF00E08769 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E055820629954ADF00E08769 /* HomeViewController.swift */; };
+		E05E7494299F7FE500D5CECF /* AvatarCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05E7493299F7FE500D5CECF /* AvatarCollectionViewController.swift */; };
+		E05E7498299F973A00D5CECF /* OfficeDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05E7497299F973A00D5CECF /* OfficeDaysViewController.swift */; };
+		E05E749A299FA0D500D5CECF /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05E7499299FA0D500D5CECF /* TabBarController.swift */; };
+		E05E749C299FE43B00D5CECF /* appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05E749B299FE43B00D5CECF /* appointment.swift */; };
+		E05E74A2299FE5EE00D5CECF /* AppointmentAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05E74A1299FE5EE00D5CECF /* AppointmentAPI.swift */; };
+		E05E74A429A3DBE400D5CECF /* AppointmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05E74A329A3DBE400D5CECF /* AppointmentTableViewCell.swift */; };
 		E0A27EF629928C1600351EDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A27EF529928C1600351EDF /* AppDelegate.swift */; };
 		E0A27EF829928C1600351EDF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A27EF729928C1600351EDF /* SceneDelegate.swift */; };
 		E0A27EFA29928C1600351EDF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A27EF929928C1600351EDF /* SignUpViewController.swift */; };
@@ -32,6 +38,12 @@
 		E05582002995257800E08769 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		E05582022995265A00E08769 /* UserSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSignInViewController.swift; sourceTree = "<group>"; };
 		E055820629954ADF00E08769 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E05E7493299F7FE500D5CECF /* AvatarCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCollectionViewController.swift; sourceTree = "<group>"; };
+		E05E7497299F973A00D5CECF /* OfficeDaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeDaysViewController.swift; sourceTree = "<group>"; };
+		E05E7499299FA0D500D5CECF /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		E05E749B299FE43B00D5CECF /* appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appointment.swift; sourceTree = "<group>"; };
+		E05E74A1299FE5EE00D5CECF /* AppointmentAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentAPI.swift; sourceTree = "<group>"; };
+		E05E74A329A3DBE400D5CECF /* AppointmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentTableViewCell.swift; sourceTree = "<group>"; };
 		E0A27EF229928C1600351EDF /* Sky Go iOS Calendar App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sky Go iOS Calendar App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0A27EF529928C1600351EDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0A27EF729928C1600351EDF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +98,12 @@
 				E0A27EF929928C1600351EDF /* SignUpViewController.swift */,
 				E05582002995257800E08769 /* LogInViewController.swift */,
 				E0AA643B299D12B2008B8864 /* ProfileViewController.swift */,
+				E05E7493299F7FE500D5CECF /* AvatarCollectionViewController.swift */,
+				E05E7497299F973A00D5CECF /* OfficeDaysViewController.swift */,
+				E05E7499299FA0D500D5CECF /* TabBarController.swift */,
+				E05E749B299FE43B00D5CECF /* appointment.swift */,
+				E05E74A1299FE5EE00D5CECF /* AppointmentAPI.swift */,
+				E05E74A329A3DBE400D5CECF /* AppointmentTableViewCell.swift */,
 				E0A27EFE29928C1900351EDF /* Assets.xcassets */,
 				E0A27F0029928C1900351EDF /* LaunchScreen.storyboard */,
 				E0A27F0329928C1900351EDF /* Info.plist */,
@@ -236,8 +254,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E05582012995257800E08769 /* LogInViewController.swift in Sources */,
+				E05E749C299FE43B00D5CECF /* appointment.swift in Sources */,
+				E05E7494299F7FE500D5CECF /* AvatarCollectionViewController.swift in Sources */,
 				E0A27EFA29928C1600351EDF /* SignUpViewController.swift in Sources */,
+				E05E74A429A3DBE400D5CECF /* AppointmentTableViewCell.swift in Sources */,
+				E05E74A2299FE5EE00D5CECF /* AppointmentAPI.swift in Sources */,
+				E05E749A299FA0D500D5CECF /* TabBarController.swift in Sources */,
 				E05582032995265A00E08769 /* UserSignInViewController.swift in Sources */,
+				E05E7498299F973A00D5CECF /* OfficeDaysViewController.swift in Sources */,
 				E0A27EF629928C1600351EDF /* AppDelegate.swift in Sources */,
 				E0AA643C299D12B3008B8864 /* ProfileViewController.swift in Sources */,
 				E0A27EF829928C1600351EDF /* SceneDelegate.swift in Sources */,
@@ -385,8 +409,8 @@
 				INFOPLIST_FILE = "Sky Go iOS Calendar App/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -412,8 +436,8 @@
 				INFOPLIST_FILE = "Sky Go iOS Calendar App/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

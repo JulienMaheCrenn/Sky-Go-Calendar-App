@@ -12,7 +12,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     let signInNavigationController = UINavigationController(rootViewController: UserSignInViewController())
-    let homeViewController = UINavigationController(rootViewController: HomeViewController())
+//    let homeViewController = UINavigationController(rootViewController: HomeViewController())
+    let tabBarViewController = TabBarController()
     
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -27,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         Auth.auth().addStateDidChangeListener { auth, user in
             if Auth.auth().currentUser != nil {
-                self.window?.rootViewController = self.homeViewController
+                self.window?.rootViewController = self.tabBarViewController
             } else {
                 self.window?.rootViewController = self.signInNavigationController
             }
@@ -65,6 +66,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+    }
+    
+    func settingTabbar()->(UITabBarController)
+    {
+        //Setting TabBar
+        let tabbar = UITabBarController()
+
+        //Designing Tabbar Item Images
+        let calendar = UITabBarItem(title: nil, image:UIImage(named: "calendar.badge.plus") , tag: 0)
+        let officeDays = UITabBarItem(title: nil, image: UIImage(named: "list.dash"), tag: 1)
+
+        //Getting TabBar ViewControllers
+        let calendarVC = HomeViewController()
+        let officeDaysVC = OfficeDaysViewController()
+        //Setting ViewControllers on TabBar Items
+        calendarVC.tabBarItem = calendar
+        officeDaysVC.tabBarItem = officeDays
+        let controllers = [calendarVC, officeDaysVC]
+        tabbar.viewControllers = controllers
+        tabbar.viewControllers = controllers.map{UINavigationController(rootViewController: $0)}
+        //Setting Title
+        tabbar.navigationItem.title = "Testing Tab Bar"
+
+        return tabbar
+
     }
 
 

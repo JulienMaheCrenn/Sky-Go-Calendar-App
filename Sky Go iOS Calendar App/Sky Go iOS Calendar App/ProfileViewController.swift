@@ -23,6 +23,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         setupScrollView()
         setupLabels()
     }
@@ -48,7 +49,7 @@ class ProfileViewController: UIViewController {
         NSLayoutConstraint.activate([
             scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             contentStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
