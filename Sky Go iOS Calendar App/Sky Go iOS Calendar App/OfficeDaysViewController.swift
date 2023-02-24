@@ -19,6 +19,7 @@ class OfficeDaysViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemPurple
+        setupTableView()
         
         Auth.auth().addStateDidChangeListener{auth, user in
             if Auth.auth().currentUser != nil {
@@ -67,13 +68,11 @@ class OfficeDaysViewController: UIViewController, UITableViewDataSource, UITable
         return cell
     }
     
-
-    
     func setupAppointments () {
         appointmentAPI.getAppointments(completion: {appointments in
             self.appointmentsArray = appointments
             
-            self.setupTableView()
+            self.appointmentsTableView.reloadData()
         })
     }
 

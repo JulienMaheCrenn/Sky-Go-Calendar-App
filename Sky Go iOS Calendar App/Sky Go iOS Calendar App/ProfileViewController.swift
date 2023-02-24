@@ -20,12 +20,14 @@ class ProfileViewController: UIViewController {
     let jobTitleLabel = UILabel()
     let departmentLabel = UILabel()
     let locationLabel = UILabel()
+    let logOutButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupScrollView()
         setupLabels()
+        setupButton()
     }
     
     func setupScrollView() {
@@ -44,6 +46,7 @@ class ProfileViewController: UIViewController {
          self.jobTitleLabel,
          self.departmentLabel,
          self.locationLabel,
+         self.logOutButton,
         ].forEach {contentStackView.addArrangedSubview($0)}
         
         NSLayoutConstraint.activate([
@@ -92,5 +95,26 @@ class ProfileViewController: UIViewController {
             }
         }
         
+    }
+    
+    func setupButton() {
+
+        logOutButton.configuration = .filled()
+        logOutButton.configuration?.baseBackgroundColor = .systemRed
+        logOutButton.configuration?.title = "Log Out"
+        logOutButton.configuration?.baseForegroundColor = .black
+        
+        logOutButton.addTarget(self, action: #selector(handleLogOut), for: .touchUpInside)
+    
+        
+    }
+    
+    @objc func handleLogOut() {
+            let firebaseAuth = Auth.auth()
+        do {
+          try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+          print("Error signing out: %@", signOutError)
+        }
     }
 }

@@ -78,7 +78,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let officeDays = UITabBarItem(title: nil, image: UIImage(named: "list.dash"), tag: 1)
 
         //Getting TabBar ViewControllers
-        let calendarVC = HomeViewController()
+        let calendarVC = CalendarViewController()
         let officeDaysVC = OfficeDaysViewController()
         //Setting ViewControllers on TabBar Items
         calendarVC.tabBarItem = calendar

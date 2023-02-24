@@ -18,7 +18,7 @@ class TabBarController: UITabBarController {
         let officeDays = UITabBarItem(title: "Office Days", image: UIImage(systemName: "list.dash"), tag: 1)
 
         //Getting TabBar ViewControllers
-        let calendarVC =  HomeViewController()
+        let calendarVC =  CalendarViewController()
         calendarVC.title = "Calendar"
         
         let officeDaysVC = OfficeDaysViewController()
@@ -29,11 +29,24 @@ class TabBarController: UITabBarController {
         
         
         let controllers = [calendarVC, officeDaysVC]
-        self.viewControllers = controllers.map{UINavigationController(rootViewController: $0)}
-        self.tabBar.backgroundColor = .systemBackground
+        self.viewControllers = controllers.map{
+            let navigationController = UINavigationController(rootViewController: $0)
+            let profileImage = UIImage(systemName: "person.circle")
+            
+            $0.navigationItem.rightBarButtonItem = UIBarButtonItem(image: profileImage, style: .plain, target: self, action: #selector(handleShowProfile))
+            
+            
+            return navigationController
+        }
+        self.tabBar.backgroundColor = .systemGray6
+        
+
 
         // Do any additional setup after loading the view.
     }
-    
+    @objc func handleShowProfile () {
+        let profileView = ProfileViewController()
+        present(profileView, animated: true)
+    }
 
 }
