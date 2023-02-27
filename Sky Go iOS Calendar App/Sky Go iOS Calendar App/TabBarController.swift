@@ -35,7 +35,6 @@ class TabBarController: UITabBarController {
             
             $0.navigationItem.rightBarButtonItem = UIBarButtonItem(image: profileImage, style: .plain, target: self, action: #selector(handleShowProfile))
             
-            
             return navigationController
         }
         self.tabBar.backgroundColor = .systemGray6

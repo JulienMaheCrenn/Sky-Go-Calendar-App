@@ -17,11 +17,11 @@ class CalendarViewController: UIViewController, WeeklyViewDelegate{
     
     
     let database = Database.database(url:"https://sky-go-hybrid-calendar-app-default-rtdb.europe-west1.firebasedatabase.app").reference()
-    let currentUserUID = Auth.auth().currentUser?.uid
     
     let scrollView = UIScrollView()
     let contentStackView = UIStackView()
 
+    var currentUserUID = Auth.auth().currentUser?.uid
     
     let selectDateButton = UIButton()
     let showProfileButton = UIBarButtonItem()
@@ -48,11 +48,14 @@ class CalendarViewController: UIViewController, WeeklyViewDelegate{
         view.backgroundColor = .systemBackground
         
         setupWeekView()
-//        setupShowProfileButton()
-        //setupLocationDropDown()
-
+        setupLocationDropDown()
         
-
+        //Dropdown Updater
+        
+        Auth.auth().addStateDidChangeListener{auth, user in
+            self.currentUserUID = Auth.auth().currentUser?.uid
+            self.updateUserLocation()
+        }
     }
     
     func initiallyDisplayedDates () {
@@ -64,44 +67,36 @@ class CalendarViewController: UIViewController, WeeklyViewDelegate{
         }
         weeklyView.setWeekView(withDates: currentlyDisplayedDates)
     }
-    
 
     
     
-//    func setupShowProfileButton() {
+//    func setupDatePicker() {
+//        datePicker.datePickerMode = .date
+//        datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: .valueChanged)
+//        datePicker.frame.size = CGSize(width: 0, height: 300)
+//        datePicker.minimumDate = Date()
+//        datePicker.preferredDatePickerStyle = .wheels
 //
-//        let profileImage = UIImage(systemName: "person.circle")
+//        dateSelectionText.inputView = datePicker
 //
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(image: profileImage, style: .plain, target: self, action: #selector(handleShowProfile))
+//        dateSelectionText.text = formatDateToString(date: Date())
 //
 //    }
-    
-    
-    func setupDatePicker() {
-        datePicker.datePickerMode = .date
-        datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: .valueChanged)
-        datePicker.frame.size = CGSize(width: 0, height: 300)
-        datePicker.minimumDate = Date()
-        datePicker.preferredDatePickerStyle = .wheels
-        
-        dateSelectionText.inputView = datePicker
-        
-        dateSelectionText.text = formatDateToString(date: Date())
-
-    }
-    
-    @objc func dateChange(datePicker:UIDatePicker) {
-        dateSelectionText.text = formatDateToString(date: datePicker.date)
-    }
-    
-    func formatDateToString(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd MMMM yyyy"
-        return formatter.string(from: date)
-    }
+//
+//    @objc func dateChange(datePicker:UIDatePicker) {
+//        dateSelectionText.text = formatDateToString(date: datePicker.date)
+//    }
+//
+//    func formatDateToString(date: Date) -> String {
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "dd MMMM yyyy"
+//        return formatter.string(from: date)
+//    }
     
     func setupWeekView() {
         view.addSubview(weeklyView)
+        
+        weeklyView.layer.cornerRadius = 5
         
         weeklyView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -114,48 +109,62 @@ class CalendarViewController: UIViewController, WeeklyViewDelegate{
     }
     
     
-//    func setupLocationDropDown() {
-//        view.addSubview(locationDropDownButton)
-//
-//        locationDropDownButton.configuration = .plain()
-//        locationDropDownButton.configuration?.titleAlignment = .center
-//        locationDropDownButton.setImage(UIImage(systemName: "location.fill"), for: .normal)
-//        locationDropDownButton.configuration?.imagePlacement = .trailing
-//
-//        database.child("users").child(currentUserUID!).observeSingleEvent(of: .value, with: {snapshot in
-//            guard let user = snapshot.value as? NSObject else{
-//                self.locationDropDownButton.configuration?.title = "Error finding location"
-//                return
-//            }
-//
-//            self.locationDropDownButton.configuration?.title = "\(user.value(forKey: "location") as? String ?? "location not found")  "
-//
-//        })
-//
-//        locationDropDown.anchorView = locationDropDownButton
-//        locationDropDown.dataSource = ["Osterley  ", "Leeds  ", "Brentwood  "]
-//        locationDropDown.direction = .any
-//
-//        locationDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-//            self.locationDropDownButton.configuration?.title = "\(item)"
-//        }
-//
-//        locationDropDownButton.addTarget(self, action: #selector(handleLocationDropDown), for: .touchUpInside)
-//
-//        locationDropDownButton.translatesAutoresizingMaskIntoConstraints = false
-//
-//        NSLayoutConstraint.activate([
-//            locationDropDownButton.topAnchor.constraint(equalTo: weeklyStackView.bottomAnchor),
-//            locationDropDownButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            locationDropDownButton.widthAnchor.constraint(equalTo: dateSelectionLabel.widthAnchor, multiplier: 0.75),
-//            locationDropDownButton.heightAnchor.constraint(equalToConstant: 30),
-//        ])
-//
-//    }
+    func setupLocationDropDown() {
+        view.addSubview(locationDropDownButton)
+
+        locationDropDownButton.configuration = .plain()
+        locationDropDownButton.configuration?.titleAlignment = .center
+        locationDropDownButton.setImage(UIImage(systemName: "location.fill"), for: .normal)
+        locationDropDownButton.configuration?.imagePlacement = .trailing
+
+        database.child("users").child(currentUserUID!).observeSingleEvent(of: .value, with: {snapshot in
+            guard let user = snapshot.value as? NSObject else{
+                self.locationDropDownButton.configuration?.title = "Error finding location"
+                return
+            }
+
+            self.locationDropDownButton.configuration?.title = "\(user.value(forKey: "location") as? String ?? "location not found")  "
+
+        })
+
+        locationDropDown.anchorView = locationDropDownButton
+        locationDropDown.dataSource = ["Osterley  ", "Leeds  ", "Brentwood  "]
+        locationDropDown.direction = .any
+
+        locationDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            self.locationDropDownButton.configuration?.title = "\(item)"
+        }
+
+        locationDropDownButton.addTarget(self, action: #selector(handleLocationDropDown), for: .touchUpInside)
+
+        locationDropDownButton.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            locationDropDownButton.topAnchor.constraint(equalTo: weeklyView.bottomAnchor, constant: 10),
+            locationDropDownButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            locationDropDownButton.widthAnchor.constraint(equalTo: weeklyView.monthLabel.widthAnchor, multiplier: 0.75),
+            locationDropDownButton.heightAnchor.constraint(equalToConstant: 30),
+        ])
+
+    }
     
-//    @objc func handleLocationDropDown () {
-//        locationDropDown.show()
-//    }
+    func updateUserLocation () {
+        if Auth.auth().currentUser != nil {
+            self.database.child("users").child(self.currentUserUID!).observeSingleEvent(of: .value, with: {snapshot in
+                guard let user = snapshot.value as? NSObject else{
+                    self.locationDropDownButton.configuration?.title = "Error finding location"
+                    return
+                }
+                self.locationDropDownButton.configuration?.title = "\(user.value(forKey: "location") as? String ?? "location not found")  "
+            })
+        }else {
+            return
+        }
+    }
+    
+    @objc func handleLocationDropDown () {
+        locationDropDown.show()
+    }
     
     
     func setupTextFields() {

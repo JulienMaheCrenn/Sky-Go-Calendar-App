@@ -59,7 +59,7 @@ class WeeklyView: UIView {
             delegate.forwardWeekButtonClicked()
         }))
         super.init(frame: .zero)
-        
+        backgroundColor = .systemBackground
         
         //Month Label
         addSubview(monthLabel)
