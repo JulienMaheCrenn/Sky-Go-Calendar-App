@@ -5,7 +5,7 @@
 //  Created by Julien Mahe-Crenn on 17/02/2023.
 //
 
-import UIKit
+import Foundation
 
 struct Appointment {
     let date:String?

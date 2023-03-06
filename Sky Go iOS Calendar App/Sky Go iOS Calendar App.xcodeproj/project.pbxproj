@@ -18,12 +18,21 @@
 		E05E7494299F7FE500D5CECF /* AvatarCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05E7493299F7FE500D5CECF /* AvatarCollectionViewController.swift */; };
 		E05E7498299F973A00D5CECF /* OfficeDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05E7497299F973A00D5CECF /* OfficeDaysViewController.swift */; };
 		E05E749A299FA0D500D5CECF /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05E7499299FA0D500D5CECF /* TabBarController.swift */; };
-		E05E749C299FE43B00D5CECF /* appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05E749B299FE43B00D5CECF /* appointment.swift */; };
-		E05E74A2299FE5EE00D5CECF /* AppointmentAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05E74A1299FE5EE00D5CECF /* AppointmentAPI.swift */; };
+		E05E749C299FE43B00D5CECF /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05E749B299FE43B00D5CECF /* Appointment.swift */; };
 		E05E74A429A3DBE400D5CECF /* AppointmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05E74A329A3DBE400D5CECF /* AppointmentTableViewCell.swift */; };
 		E05E74A629A62BD100D5CECF /* WeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05E74A529A62BD100D5CECF /* WeeklyView.swift */; };
 		E05E74A829A653FE00D5CECF /* WeeklyCalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05E74A729A653FE00D5CECF /* WeeklyCalendarHelper.swift */; };
 		E08B087629ACDEA2009BF09E /* UserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B087529ACDEA2009BF09E /* UserListView.swift */; };
+		E08B087829ACF3B2009BF09E /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B087729ACF3B2009BF09E /* UserTableViewCell.swift */; };
+		E08B087A29B0AEDB009BF09E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B087929B0AEDB009BF09E /* User.swift */; };
+		E08B087C29B0B5D6009BF09E /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B087B29B0B5D6009BF09E /* UserAPI.swift */; };
+		E08B087F29B1072A009BF09E /* OfficeDaysModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B087E29B1072A009BF09E /* OfficeDaysModel.swift */; };
+		E08B088129B10A05009BF09E /* OfficeDaysPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B088029B10A05009BF09E /* OfficeDaysPresenter.swift */; };
+		E08B088329B20F1A009BF09E /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B088229B20F1A009BF09E /* ProfileModel.swift */; };
+		E08B088529B20F29009BF09E /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B088429B20F29009BF09E /* ProfilePresenter.swift */; };
+		E08B088729B23E87009BF09E /* FirebaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B088629B23E87009BF09E /* FirebaseError.swift */; };
+		E08B088929B24ED9009BF09E /* CalendarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B088829B24ED9009BF09E /* CalendarPresenter.swift */; };
+		E08B088B29B24EEF009BF09E /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B088A29B24EEF009BF09E /* CalendarModel.swift */; };
 		E0A27EF629928C1600351EDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A27EF529928C1600351EDF /* AppDelegate.swift */; };
 		E0A27EF829928C1600351EDF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A27EF729928C1600351EDF /* SceneDelegate.swift */; };
 		E0A27EFA29928C1600351EDF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A27EF929928C1600351EDF /* SignUpViewController.swift */; };
@@ -44,12 +53,21 @@
 		E05E7493299F7FE500D5CECF /* AvatarCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCollectionViewController.swift; sourceTree = "<group>"; };
 		E05E7497299F973A00D5CECF /* OfficeDaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeDaysViewController.swift; sourceTree = "<group>"; };
 		E05E7499299FA0D500D5CECF /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		E05E749B299FE43B00D5CECF /* appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appointment.swift; sourceTree = "<group>"; };
-		E05E74A1299FE5EE00D5CECF /* AppointmentAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentAPI.swift; sourceTree = "<group>"; };
+		E05E749B299FE43B00D5CECF /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		E05E74A329A3DBE400D5CECF /* AppointmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentTableViewCell.swift; sourceTree = "<group>"; };
 		E05E74A529A62BD100D5CECF /* WeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyView.swift; sourceTree = "<group>"; };
 		E05E74A729A653FE00D5CECF /* WeeklyCalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyCalendarHelper.swift; sourceTree = "<group>"; };
 		E08B087529ACDEA2009BF09E /* UserListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListView.swift; sourceTree = "<group>"; };
+		E08B087729ACF3B2009BF09E /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		E08B087929B0AEDB009BF09E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E08B087B29B0B5D6009BF09E /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
+		E08B087E29B1072A009BF09E /* OfficeDaysModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeDaysModel.swift; sourceTree = "<group>"; };
+		E08B088029B10A05009BF09E /* OfficeDaysPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeDaysPresenter.swift; sourceTree = "<group>"; };
+		E08B088229B20F1A009BF09E /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		E08B088429B20F29009BF09E /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		E08B088629B23E87009BF09E /* FirebaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseError.swift; sourceTree = "<group>"; };
+		E08B088829B24ED9009BF09E /* CalendarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPresenter.swift; sourceTree = "<group>"; };
+		E08B088A29B24EEF009BF09E /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
 		E0A27EF229928C1600351EDF /* Sky Go iOS Calendar App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sky Go iOS Calendar App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0A27EF529928C1600351EDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0A27EF729928C1600351EDF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +94,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E072F59329B61538000C0CB9 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				E055820629954ADF00E08769 /* CalendarViewController.swift */,
+				E08B088829B24ED9009BF09E /* CalendarPresenter.swift */,
+				E08B088A29B24EEF009BF09E /* CalendarModel.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		E072F59529B61564000C0CB9 /* OfficeDays */ = {
+			isa = PBXGroup;
+			children = (
+				E05E7497299F973A00D5CECF /* OfficeDaysViewController.swift */,
+				E08B088029B10A05009BF09E /* OfficeDaysPresenter.swift */,
+				E08B087E29B1072A009BF09E /* OfficeDaysModel.swift */,
+			);
+			path = OfficeDays;
+			sourceTree = "<group>";
+		};
+		E072F59629B61584000C0CB9 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E0AA643B299D12B2008B8864 /* ProfileViewController.swift */,
+				E08B088229B20F1A009BF09E /* ProfileModel.swift */,
+				E08B088429B20F29009BF09E /* ProfilePresenter.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		E072F59729B615FA000C0CB9 /* DataObjectStructs */ = {
+			isa = PBXGroup;
+			children = (
+				E05E749B299FE43B00D5CECF /* Appointment.swift */,
+				E08B087929B0AEDB009BF09E /* User.swift */,
+				E08B088629B23E87009BF09E /* FirebaseError.swift */,
+			);
+			path = DataObjectStructs;
+			sourceTree = "<group>";
+		};
 		E0A27EE929928C1600351EDF = {
 			isa = PBXGroup;
 			children = (
@@ -97,26 +155,27 @@
 		E0A27EF429928C1600351EDF /* Sky Go iOS Calendar App */ = {
 			isa = PBXGroup;
 			children = (
+				E072F59729B615FA000C0CB9 /* DataObjectStructs */,
+				E072F59629B61584000C0CB9 /* Profile */,
+				E072F59529B61564000C0CB9 /* OfficeDays */,
+				E072F59329B61538000C0CB9 /* Calendar */,
 				E0A27EF529928C1600351EDF /* AppDelegate.swift */,
 				E0A27EF729928C1600351EDF /* SceneDelegate.swift */,
-				E055820629954ADF00E08769 /* CalendarViewController.swift */,
 				E05582022995265A00E08769 /* UserSignInViewController.swift */,
 				E0A27EF929928C1600351EDF /* SignUpViewController.swift */,
 				E05582002995257800E08769 /* LogInViewController.swift */,
-				E05E7497299F973A00D5CECF /* OfficeDaysViewController.swift */,
-				E0AA643B299D12B2008B8864 /* ProfileViewController.swift */,
 				E05E7493299F7FE500D5CECF /* AvatarCollectionViewController.swift */,
 				E05E7499299FA0D500D5CECF /* TabBarController.swift */,
-				E05E749B299FE43B00D5CECF /* appointment.swift */,
-				E05E74A1299FE5EE00D5CECF /* AppointmentAPI.swift */,
 				E05E74A329A3DBE400D5CECF /* AppointmentTableViewCell.swift */,
 				E05E74A529A62BD100D5CECF /* WeeklyView.swift */,
+				E08B087B29B0B5D6009BF09E /* UserAPI.swift */,
+				E08B087529ACDEA2009BF09E /* UserListView.swift */,
+				E08B087729ACF3B2009BF09E /* UserTableViewCell.swift */,
 				E05E74A729A653FE00D5CECF /* WeeklyCalendarHelper.swift */,
 				E0A27EFE29928C1900351EDF /* Assets.xcassets */,
 				E0A27F0029928C1900351EDF /* LaunchScreen.storyboard */,
 				E0A27F0329928C1900351EDF /* Info.plist */,
 				E05581F32993EC0500E08769 /* GoogleService-Info.plist */,
-				E08B087529ACDEA2009BF09E /* UserListView.swift */,
 			);
 			path = "Sky Go iOS Calendar App";
 			sourceTree = "<group>";
@@ -262,21 +321,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E08B088529B20F29009BF09E /* ProfilePresenter.swift in Sources */,
 				E05E74A829A653FE00D5CECF /* WeeklyCalendarHelper.swift in Sources */,
 				E05582012995257800E08769 /* LogInViewController.swift in Sources */,
-				E05E749C299FE43B00D5CECF /* appointment.swift in Sources */,
+				E05E749C299FE43B00D5CECF /* Appointment.swift in Sources */,
+				E08B087C29B0B5D6009BF09E /* UserAPI.swift in Sources */,
+				E08B088129B10A05009BF09E /* OfficeDaysPresenter.swift in Sources */,
 				E08B087629ACDEA2009BF09E /* UserListView.swift in Sources */,
 				E05E7494299F7FE500D5CECF /* AvatarCollectionViewController.swift in Sources */,
 				E05E74A629A62BD100D5CECF /* WeeklyView.swift in Sources */,
 				E0A27EFA29928C1600351EDF /* SignUpViewController.swift in Sources */,
 				E05E74A429A3DBE400D5CECF /* AppointmentTableViewCell.swift in Sources */,
-				E05E74A2299FE5EE00D5CECF /* AppointmentAPI.swift in Sources */,
+				E08B088B29B24EEF009BF09E /* CalendarModel.swift in Sources */,
 				E05E749A299FA0D500D5CECF /* TabBarController.swift in Sources */,
+				E08B088929B24ED9009BF09E /* CalendarPresenter.swift in Sources */,
 				E05582032995265A00E08769 /* UserSignInViewController.swift in Sources */,
+				E08B088729B23E87009BF09E /* FirebaseError.swift in Sources */,
 				E05E7498299F973A00D5CECF /* OfficeDaysViewController.swift in Sources */,
 				E0A27EF629928C1600351EDF /* AppDelegate.swift in Sources */,
 				E0AA643C299D12B3008B8864 /* ProfileViewController.swift in Sources */,
+				E08B088329B20F1A009BF09E /* ProfileModel.swift in Sources */,
+				E08B087A29B0AEDB009BF09E /* User.swift in Sources */,
 				E0A27EF829928C1600351EDF /* SceneDelegate.swift in Sources */,
+				E08B087829ACF3B2009BF09E /* UserTableViewCell.swift in Sources */,
+				E08B087F29B1072A009BF09E /* OfficeDaysModel.swift in Sources */,
 				E055820729954ADF00E08769 /* CalendarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

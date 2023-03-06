@@ -9,31 +9,28 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class OfficeDaysViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class OfficeDaysViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, OfficeDaysPresenterDelegate{
 
-    private let database = Database.database(url: "https://sky-go-hybrid-calendar-app-default-rtdb.europe-west1.firebasedatabase.app").reference()
-    let appointmentAPI = AppointmentAPI()
+    
+
     let appointmentsTableView = UITableView()
     var appointmentsArray: [Appointment] = []
+    var presenter = OfficeDaysPresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.delegate = self
         view.backgroundColor = .systemPurple
         setupTableView()
-        
-        Auth.auth().addStateDidChangeListener{auth, user in
-            if Auth.auth().currentUser != nil {
-                self.setupAppointments()
-            }else {
-                return
-            }
-        }
-        
-        database.child("users").child(Auth.auth().currentUser!.uid).child("appointments").observe(.value, with: {snapshot in
-            guard let _ = snapshot.value else {return}
-            self.setupAppointments()
-        })
-        
+        presenter.viewDidLoad()
+
+    }
+    
+    
+    // Part of Office Days Delegate
+    func reloadTableView(appointments:[Appointment]) {
+        appointmentsArray = appointments
+        appointmentsTableView.reloadData()
     }
     
     func setupTableView() {
@@ -63,17 +60,11 @@ class OfficeDaysViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "appointmentCell", for: indexPath) as! AppointmentTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "appointmentCell", for: indexPath) as? AppointmentTableViewCell else {fatalError("Uh OH")}
         cell.appointment = appointmentsArray[indexPath.row]
         return cell
     }
     
-    func setupAppointments () {
-        appointmentAPI.getAppointments(completion: {appointments in
-            self.appointmentsArray = appointments
-            
-            self.appointmentsTableView.reloadData()
-        })
-    }
+
 
 }

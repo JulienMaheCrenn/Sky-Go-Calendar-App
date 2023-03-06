@@ -7,17 +7,13 @@
 
 import UIKit
 
-protocol WeeklyViewDelegate {
-    func dateButtonClicked (index: Int)
-    func forwardWeekButtonClicked ()
-    func backwardWeekButtonClicked ()
-}
+
 
 
 class WeeklyView: UIView {
     
     let weeklyStackView = UIStackView()
-    let delegate: WeeklyViewDelegate
+    let delegate: CalendarPresenterDelegate
     var buttonArray:[UIButton] = []
     let daysStackView = UIStackView()
     let monthLabel = UILabel()
@@ -48,7 +44,7 @@ class WeeklyView: UIView {
     
     
     
-    public init (delegate:WeeklyViewDelegate) {
+    public init (delegate:CalendarPresenterDelegate) {
         //delegate initializer
         self.delegate = delegate
         //arrow button initializer
@@ -64,7 +60,7 @@ class WeeklyView: UIView {
         //Month Label
         addSubview(monthLabel)
         
-        monthLabel.text = "February 2023"
+        monthLabel.text = "No Date Selected"
         monthLabel.textAlignment = .center
         monthLabel.font = UIFont.boldSystemFont(ofSize: 25)
         
@@ -205,21 +201,5 @@ class WeeklyView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateDateSelection (index: Int, selected: Bool) {
-        let backgroundColour: UIColor = selected ? .red : .blue
-        buttonArray[index].configuration?.baseBackgroundColor = backgroundColour
-    }
-    
-    func updateMonthLabel (month:String) {
-        monthLabel.text = month
-    }
-    
-    func setWeekView(withDates:[Date]) {
-        buttonArray.enumerated().forEach { index, button in
-            button.configuration?.title = String(describing:WeeklyCalendarHelper().dayOfMonth(date: withDates[index]))
-        }
-    }
-    
-
 
 }

@@ -9,10 +9,10 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, ProfilePresenterDelegate {
+
     
-    private let database = Database.database(url: "https://sky-go-hybrid-calendar-app-default-rtdb.europe-west1.firebasedatabase.app").reference()
-    
+
     let scrollView = UIScrollView()
     let contentStackView = UIStackView()
     
@@ -22,12 +22,25 @@ class ProfileViewController: UIViewController {
     let locationLabel = UILabel()
     let logOutButton = UIButton()
     
+    var presenter: ProfilePresenter
+    
+    public init(userUID:String) {
+        presenter = ProfilePresenter(userUID: userUID)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        presenter.delegate = self
         setupScrollView()
         setupLabels()
         setupButton()
+        presenter.viewDidLoad()
     }
     
     func setupScrollView() {
@@ -78,23 +91,6 @@ class ProfileViewController: UIViewController {
         departmentLabel.numberOfLines = 0
         locationLabel.numberOfLines = 0
         
-        Auth.auth().addStateDidChangeListener { auth, user in
-            if Auth.auth().currentUser != nil {
-                self.database.child("users").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: {snapshot in
-                                    guard let value = snapshot.value as? NSObject else {
-                                        self.fullNameLabel.text = "Unable to retrieve Data"
-                                        return
-                                    }
-                    self.fullNameLabel.text = "Full Name: \(value.value(forKey: "name") ?? "Not Found")"
-                    self.jobTitleLabel.text = "Job Title: \(value.value(forKey: "jobTitle") ?? "Not Found")"
-                    self.departmentLabel.text = "Department: \(value.value(forKey: "department") ?? "Not Found")"
-                    self.locationLabel.text = "Location: \(value.value(forKey: "location") ?? "Not Found")"
-                                })
-            } else {
-                return
-            }
-        }
-        
     }
     
     func setupButton() {
@@ -110,11 +106,26 @@ class ProfileViewController: UIViewController {
     }
     
     @objc func handleLogOut() {
-            let firebaseAuth = Auth.auth()
-        do {
-          try firebaseAuth.signOut()
-        } catch let signOutError as NSError {
-          print("Error signing out: %@", signOutError)
-        }
+        presenter.logOut()
+    }
+    
+    func reloadView(user: User) {
+        fullNameLabel.text = user.name
+        jobTitleLabel.text = user.jobTitle
+        departmentLabel.text = user.department
+        locationLabel.text = user.location
+    }
+    
+    func reloadViewWithError(error: FirebaseError) {
+        fullNameLabel.text = "Not Found"
+        jobTitleLabel.text = "Not Found"
+        departmentLabel.text = "Not Found"
+        locationLabel.text = "Not Found"
+    }
+    
+    func presentError(error: FirebaseError) {
+        let alertController = UIAlertController(title: "FAILED TO LOG OUT", message: "Uh Oh Firebase went poopy", preferredStyle: UIAlertController.Style.alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default))
+        present(alertController, animated: true)
     }
 }
