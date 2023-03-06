@@ -12,38 +12,38 @@ protocol CalendarPresenterDelegate: AnyObject {
     func updateLocation(location:String)
     
     //WeeklyView Delegate Methods
-    func dateButtonClicked (index: Int)
-    func forwardWeekButtonClicked ()
-    func backwardWeekButtonClicked ()
     func updateMonthLabel (month: String)
     func setWeekView (withDates: [Date])
     func updateDateSelection (index:Int, selected:Bool)
+    
+    //UserListView Delegate Methods
 }
 
 
-struct CalendarPresenter {
+class CalendarPresenter {
     
+    private let calendar = Calendar.current
     private let calendarModel: CalendarModel
     weak var delegate:CalendarPresenterDelegate?
-    var currentlyDisplayedDates: [Date]
-    var currentlySelectedDateIndex: Int
+    private var currentlyDisplayedDates: [Date]
+    private var currentlySelectedDateIndex: Int = 0
     
     init (userUID:String, database:DatabaseReference) {
         calendarModel = CalendarModel(userUID: userUID, database: database)
         currentlyDisplayedDates = []
-        currentlySelectedDateIndex = WeeklyCalendarHelper().weekDay(date: Date())-1
+        currentlySelectedDateIndex = weekDay(date: Date())-1
     }
     
-    mutating func viewDidLoad () {
+    func viewDidLoad () {
         //Month Label Initialiser
-        let month = WeeklyCalendarHelper().monthLabelString(date: Date())
+        let month = monthLabelString(date: Date())
         delegate?.updateMonthLabel(month: month)
         
         //Date Buttons Labels Initialiser
-        let sunday = WeeklyCalendarHelper().sundayForDate(date: Date())
+        let sunday = sundayForDate(date: Date())
         currentlyDisplayedDates.append(sunday)
         (0..<6).forEach { position in
-            let nextDay = WeeklyCalendarHelper().addDays(date: sunday, days: position+1)
+            let nextDay = addDays(date: sunday, days: position+1)
             currentlyDisplayedDates.append(nextDay)
         }
         delegate?.setWeekView(withDates: currentlyDisplayedDates)
@@ -52,31 +52,31 @@ struct CalendarPresenter {
         delegate?.updateDateSelection(index: currentlySelectedDateIndex, selected: true)
     }
     
-    mutating func dateButtonClicked (index: Int) {
+    func dateButtonClicked (index: Int) {
         delegate?.updateDateSelection(index: currentlySelectedDateIndex, selected: false)
         currentlySelectedDateIndex = index
         delegate?.updateDateSelection(index: currentlySelectedDateIndex, selected: true)
-        let month = WeeklyCalendarHelper().monthLabelString(date: currentlyDisplayedDates[index])
+        let month = monthLabelString(date: currentlyDisplayedDates[index])
         delegate?.updateMonthLabel(month: month)
 //        userAPI.getUsers(date: "\(WeeklyCalendarHelper().fullDateFormatter(date: currentlyDisplayedDates[index]))",
 //                         location: "Osterley")
     }
     
-    mutating func forwardWeekButtonClicked() {
+    func forwardWeekButtonClicked() {
        currentlyDisplayedDates = currentlyDisplayedDates.map{
-            WeeklyCalendarHelper().addDays(date: $0, days: 7)
+            addDays(date: $0, days: 7)
         }
         delegate?.setWeekView(withDates: currentlyDisplayedDates)
-        let month = WeeklyCalendarHelper().monthLabelString(date: currentlyDisplayedDates[currentlySelectedDateIndex])
+        let month = monthLabelString(date: currentlyDisplayedDates[currentlySelectedDateIndex])
         delegate?.updateMonthLabel(month: month)
     }
     
-    mutating func backwardWeekButtonClicked() {
+    func backwardWeekButtonClicked() {
         currentlyDisplayedDates = currentlyDisplayedDates.map{
-             WeeklyCalendarHelper().addDays(date: $0, days: -7)
+             addDays(date: $0, days: -7)
          }
         delegate?.setWeekView(withDates: currentlyDisplayedDates)
-        let month = WeeklyCalendarHelper().monthLabelString(date: currentlyDisplayedDates[currentlySelectedDateIndex])
+        let month = monthLabelString(date: currentlyDisplayedDates[currentlySelectedDateIndex])
         delegate?.updateMonthLabel(month: month)
     }
     
@@ -84,10 +84,57 @@ struct CalendarPresenter {
         calendarModel.updateUserLocation { result in
             switch result {
             case .success(let location):
-                delegate?.updateLocation(location: location)
+                self.delegate?.updateLocation(location: location)
             case .failure:
-                delegate?.updateLocation(location: "Not Found")
+                self.delegate?.updateLocation(location: "Not Found")
             }
         }
+    }
+    
+    //Calendar Date formattingn functions:
+    func monthLabelString(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM yyyy"
+        return dateFormatter.string(from: date)
+    }
+    
+    func fullDateFormatter (date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMMM yyyy"
+        return dateFormatter.string(from: date)
+    }
+    
+    func dayOfMonth(date: Date) -> Int {
+        let components = calendar.dateComponents([.day], from: date)
+        return components.day!
+    }
+    
+    func weekDay (date:Date) -> Int {
+        let components = calendar.dateComponents([.weekday], from: date)
+        return components.weekday ?? 000
+    }
+
+    func addDays(date: Date, days: Int) -> Date {
+        return calendar.date(byAdding: .day, value: days, to: date) ?? Date()
+    }
+    
+    func sundayForDate(date:Date) -> Date {
+        let current = date
+        let currentWeekDay = calendar.dateComponents([.weekday], from: current).weekday
+        if(currentWeekDay == 1){
+            return current
+        }
+
+        var oneWeekAgo = addDays(date: current, days: -7)
+
+        while (current > oneWeekAgo) {
+            let currentWeekDay = calendar.dateComponents([.weekday], from: oneWeekAgo).weekday
+            if(currentWeekDay == 1){
+                return oneWeekAgo
+            }
+
+            oneWeekAgo = addDays(date: oneWeekAgo, days: 1)
+        }
+        return current
     }
 }

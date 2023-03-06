@@ -9,11 +9,8 @@ import UIKit
 import FirebaseDatabase
 import DropDown
 
-class CalendarViewController: UIViewController, CalendarPresenterDelegate{
+class CalendarViewController: UIViewController, CalendarPresenterDelegate, WeeklyViewDelegate{
 
-
-
-    
     let scrollView = UIScrollView()
     let contentStackView = UIStackView()
     
@@ -27,7 +24,7 @@ class CalendarViewController: UIViewController, CalendarPresenterDelegate{
     let locationDropDown = DropDown()
     
     
-    lazy var weeklyView =  WeeklyView(delegate: self)
+    let weeklyView =  WeeklyView()
     
     
     let userListView = UserListView()
@@ -48,6 +45,7 @@ class CalendarViewController: UIViewController, CalendarPresenterDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.delegate = self
+        weeklyView.delegate = self
         view.backgroundColor = .systemBackground
         
         setupWeekView()
@@ -59,7 +57,7 @@ class CalendarViewController: UIViewController, CalendarPresenterDelegate{
         
         //Month label initialiser
         presenter.viewDidLoad()
-    }   
+    }
     
     func setupWeekView() {
         view.addSubview(weeklyView)
@@ -156,7 +154,7 @@ class CalendarViewController: UIViewController, CalendarPresenterDelegate{
     
     func setWeekView(withDates: [Date]) {
         weeklyView.buttonArray.enumerated().forEach { index, button in
-            button.configuration?.title = String(describing:WeeklyCalendarHelper().dayOfMonth(date: withDates[index]))
+            button.configuration?.title = String(describing:presenter.dayOfMonth(date: withDates[index]))
         }
     }
     
@@ -175,7 +173,6 @@ class CalendarViewController: UIViewController, CalendarPresenterDelegate{
     
     func backwardWeekButtonClicked() {
         presenter.backwardWeekButtonClicked()
-
     }
     
     func updateMonthLabel(month: String) {

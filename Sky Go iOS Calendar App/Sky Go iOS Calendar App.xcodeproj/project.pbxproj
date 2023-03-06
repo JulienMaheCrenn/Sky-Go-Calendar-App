@@ -21,7 +21,6 @@
 		E05E749C299FE43B00D5CECF /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05E749B299FE43B00D5CECF /* Appointment.swift */; };
 		E05E74A429A3DBE400D5CECF /* AppointmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05E74A329A3DBE400D5CECF /* AppointmentTableViewCell.swift */; };
 		E05E74A629A62BD100D5CECF /* WeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05E74A529A62BD100D5CECF /* WeeklyView.swift */; };
-		E05E74A829A653FE00D5CECF /* WeeklyCalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05E74A729A653FE00D5CECF /* WeeklyCalendarHelper.swift */; };
 		E08B087629ACDEA2009BF09E /* UserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B087529ACDEA2009BF09E /* UserListView.swift */; };
 		E08B087829ACF3B2009BF09E /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B087729ACF3B2009BF09E /* UserTableViewCell.swift */; };
 		E08B087A29B0AEDB009BF09E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B087929B0AEDB009BF09E /* User.swift */; };
@@ -56,7 +55,6 @@
 		E05E749B299FE43B00D5CECF /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		E05E74A329A3DBE400D5CECF /* AppointmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentTableViewCell.swift; sourceTree = "<group>"; };
 		E05E74A529A62BD100D5CECF /* WeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyView.swift; sourceTree = "<group>"; };
-		E05E74A729A653FE00D5CECF /* WeeklyCalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyCalendarHelper.swift; sourceTree = "<group>"; };
 		E08B087529ACDEA2009BF09E /* UserListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListView.swift; sourceTree = "<group>"; };
 		E08B087729ACF3B2009BF09E /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		E08B087929B0AEDB009BF09E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -100,6 +98,7 @@
 				E055820629954ADF00E08769 /* CalendarViewController.swift */,
 				E08B088829B24ED9009BF09E /* CalendarPresenter.swift */,
 				E08B088A29B24EEF009BF09E /* CalendarModel.swift */,
+				E05E74A529A62BD100D5CECF /* WeeklyView.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -167,11 +166,9 @@
 				E05E7493299F7FE500D5CECF /* AvatarCollectionViewController.swift */,
 				E05E7499299FA0D500D5CECF /* TabBarController.swift */,
 				E05E74A329A3DBE400D5CECF /* AppointmentTableViewCell.swift */,
-				E05E74A529A62BD100D5CECF /* WeeklyView.swift */,
 				E08B087B29B0B5D6009BF09E /* UserAPI.swift */,
 				E08B087529ACDEA2009BF09E /* UserListView.swift */,
 				E08B087729ACF3B2009BF09E /* UserTableViewCell.swift */,
-				E05E74A729A653FE00D5CECF /* WeeklyCalendarHelper.swift */,
 				E0A27EFE29928C1900351EDF /* Assets.xcassets */,
 				E0A27F0029928C1900351EDF /* LaunchScreen.storyboard */,
 				E0A27F0329928C1900351EDF /* Info.plist */,
@@ -322,7 +319,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E08B088529B20F29009BF09E /* ProfilePresenter.swift in Sources */,
-				E05E74A829A653FE00D5CECF /* WeeklyCalendarHelper.swift in Sources */,
 				E05582012995257800E08769 /* LogInViewController.swift in Sources */,
 				E05E749C299FE43B00D5CECF /* Appointment.swift in Sources */,
 				E08B087C29B0B5D6009BF09E /* UserAPI.swift in Sources */,

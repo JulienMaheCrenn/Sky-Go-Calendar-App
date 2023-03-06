@@ -7,18 +7,22 @@
 
 import UIKit
 
-
+protocol WeeklyViewDelegate: AnyObject {
+    func forwardWeekButtonClicked()
+    func backwardWeekButtonClicked()
+    func dateButtonClicked(index: Int)
+}
 
 
 class WeeklyView: UIView {
     
     let weeklyStackView = UIStackView()
-    let delegate: CalendarPresenterDelegate
+    weak var delegate:WeeklyViewDelegate?
     var buttonArray:[UIButton] = []
     let daysStackView = UIStackView()
     let monthLabel = UILabel()
-    let rightArrowButton:UIButton
-    let leftArrowButton:UIButton
+    let rightArrowButton = UIButton(configuration: .plain())
+    let leftArrowButton = UIButton(configuration: .plain())
     
     
     
@@ -44,17 +48,12 @@ class WeeklyView: UIView {
     
     
     
-    public init (delegate:CalendarPresenterDelegate) {
-        //delegate initializer
-        self.delegate = delegate
-        //arrow button initializer
-        leftArrowButton = UIButton(configuration: .plain(), primaryAction: UIAction(handler: { action in
-            delegate.backwardWeekButtonClicked()
-        }))
-        rightArrowButton = UIButton(configuration: .plain(), primaryAction: UIAction(handler: { action in
-            delegate.forwardWeekButtonClicked()
-        }))
+    public init () {
+        
         super.init(frame: .zero)
+        leftArrowButton.addTarget(self, action: #selector(backwardButtonClicked), for: .touchUpInside)
+        rightArrowButton.addTarget(self, action: #selector(forwardButtonClicked), for: .touchUpInside)
+
         backgroundColor = .systemBackground
         
         //Month Label
@@ -189,7 +188,7 @@ class WeeklyView: UIView {
         
         (0..<7).forEach { position in
             let button = UIButton(configuration: .filled(), primaryAction: UIAction(handler: { action in
-                delegate.dateButtonClicked(index: position)
+                self.delegate?.dateButtonClicked(index: position)
             }))
             weeklyStackView.addArrangedSubview(button)
             button.configuration?.baseBackgroundColor = .blue
@@ -201,5 +200,12 @@ class WeeklyView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc func backwardButtonClicked() {
+        delegate?.backwardWeekButtonClicked()
+    }
+    
+    @objc func forwardButtonClicked() {
+        delegate?.forwardWeekButtonClicked()
+    }
 
 }
