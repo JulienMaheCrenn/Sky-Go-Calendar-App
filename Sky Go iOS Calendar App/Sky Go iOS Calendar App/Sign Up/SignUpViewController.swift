@@ -5,9 +5,9 @@ import FirebaseDatabase
 import DropDown
 
 
-class SignUpViewController: UIViewController, UIImagePickerControllerDelegate,  UINavigationControllerDelegate {
+class SignUpViewController: UIViewController, UIImagePickerControllerDelegate,  UINavigationControllerDelegate, SignUpPresenterDelegate {
     
-    private let database = Database.database(url: "https://sky-go-hybrid-calendar-app-default-rtdb.europe-west1.firebasedatabase.app").reference()
+    var presenter: SignUpPresenter
     
     let scrollView = UIScrollView()
     let contentStackView = UIStackView()
@@ -28,10 +28,19 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate,  
     let locationButton = UIButton()
     let locationDropdown = DropDown()
     let signUpButton = UIButton()
-
+    
+    init(database:DatabaseReference) {
+        presenter = SignUpPresenter(database: database)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        presenter.delegate = self
         title = "Sign Up"
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -92,11 +101,11 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate,  
     
     func setupDropdowns() {
         departmentDropdown.anchorView = departmentButton
-        departmentDropdown.dataSource = ["Sky Go", "Now", "Core", "OVP"]
+        departmentDropdown.dataSource = presenter.populateDepartmentDropdown()
         departmentDropdown.direction = .any
         
         locationDropdown.anchorView = departmentButton
-        locationDropdown.dataSource = ["Osterley", "Leeds", "Brentwood"]
+        locationDropdown.dataSource = presenter.populateLocationDropdown()
         locationDropdown.direction = .any
         
         departmentDropdown.selectionAction = { [unowned self] (index: Int, item: String) in
@@ -180,17 +189,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate,  
             "department": departmentButton.configuration?.title as Any,
             "location": locationButton.configuration?.title as Any,
         ]
-        
-        Auth.auth().createUser(withEmail: email, password: password) {authResult, error in
-            if (authResult != nil) {
-                Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
-                  guard let _ = self else { return }
-                    self?.database.child("users").child(Auth.auth().currentUser!.uid).setValue(profile)
-                }
-            } else {
-                print("Error Signing User Up")
-            }
-        }
+        presenter.signUpUser(email: email, password: password, profile: profile)
         
     }
     

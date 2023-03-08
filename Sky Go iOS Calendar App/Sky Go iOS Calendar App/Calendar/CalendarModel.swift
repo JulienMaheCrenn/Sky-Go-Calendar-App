@@ -12,13 +12,23 @@ struct CalendarModel {
 
     private let database:DatabaseReference
     private let userUID:String
+    private let selectedDate:String
+    private let department:String = ""
+    private let location:String = ""
     
-    init(userUID:String, database: DatabaseReference) {
+    init(userUID:String, database: DatabaseReference, initialDate:String) {
         self.userUID = userUID
         self.database = database
+        selectedDate = initialDate
     }
 
+    func setupUsersListener() {
+        
+    }
     
+    private func getUsers (completion: @escaping ([User]) -> ()) {
+        
+    }
     
     func updateUserLocation (completion: @escaping (Result < String, FirebaseError >) -> ()) {
         self.database.child("users").child(userUID).observeSingleEvent(of: .value, with: {snapshot in
@@ -28,5 +38,10 @@ struct CalendarModel {
             }
             completion(.success(userLocation))
         })
+    }
+    
+    func populateLocationDropdown() -> [String] {
+        let locationDropDownArray = ["Osterley", "Leeds", "Brentwood"]
+        return locationDropDownArray
     }
 }

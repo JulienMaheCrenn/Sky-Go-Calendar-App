@@ -27,9 +27,11 @@ class CalendarPresenter {
     weak var delegate:CalendarPresenterDelegate?
     private var currentlyDisplayedDates: [Date]
     private var currentlySelectedDateIndex: Int = 0
+    var initialDate:String = ""
     
     init (userUID:String, database:DatabaseReference) {
-        calendarModel = CalendarModel(userUID: userUID, database: database)
+//        initialDate = self.fullDateFormatter(date:Date())
+        calendarModel = CalendarModel(userUID: userUID, database: database, initialDate: initialDate )
         currentlyDisplayedDates = []
         currentlySelectedDateIndex = weekDay(date: Date())-1
     }
@@ -89,6 +91,10 @@ class CalendarPresenter {
                 self.delegate?.updateLocation(location: "Not Found")
             }
         }
+    }
+    
+    func populateLocationDropdown() -> [String] {
+        calendarModel.populateLocationDropdown()
     }
     
     //Calendar Date formattingn functions:

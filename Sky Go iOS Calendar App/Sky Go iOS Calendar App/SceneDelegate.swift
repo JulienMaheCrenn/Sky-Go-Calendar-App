@@ -12,7 +12,8 @@ import FirebaseDatabase
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    let signInNavigationController = UINavigationController(rootViewController: UserSignInViewController())
+    let database:DatabaseReference = Database.database(url:"https://sky-go-hybrid-calendar-app-default-rtdb.europe-west1.firebasedatabase.app").reference()
+    
     
     
 
@@ -28,11 +29,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         Auth.auth().addStateDidChangeListener { auth, user in
             if let userUID = Auth.auth().currentUser?.uid {
-                let database = Database.database(url:"https://sky-go-hybrid-calendar-app-default-rtdb.europe-west1.firebasedatabase.app").reference()
+                let database = self.database
                 let tabBarViewController = TabBarController(userUID: userUID, database: database)
                 self.window?.rootViewController = tabBarViewController
             } else {
-                self.window?.rootViewController = self.signInNavigationController
+                let signInNavigationController = UINavigationController(rootViewController: UserSignInViewController(database: self.database))
+                self.window?.rootViewController = signInNavigationController
             }
         }
         

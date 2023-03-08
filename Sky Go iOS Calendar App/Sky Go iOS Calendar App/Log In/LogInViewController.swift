@@ -1,6 +1,5 @@
 
 import UIKit
-import FirebaseAuth
 
 class LogInViewController: UIViewController {
     
@@ -11,29 +10,28 @@ class LogInViewController: UIViewController {
     let passwordTextInput = UITextField()
     let logInButton = UIButton()
     let logOutButton = UIButton()
+    let presenter: LogInPresenter
 
+    init() {
+        presenter = LogInPresenter()
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Log In"
-//        view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
         
         setupLogo()
         setupLabels()
         setupTextFields()
         setupButtons()
-        Auth.auth().addStateDidChangeListener { auth, user in
-            self.setupBackground()
-        }
-    }
-    
-    func setupBackground () {
-        if Auth.auth().currentUser != nil {
-            view.backgroundColor = .green
-        } else {
-            view.backgroundColor = .systemBackground
-        }
     }
     
     func setupButtons() {
@@ -67,12 +65,11 @@ class LogInViewController: UIViewController {
         let email:String = usernameTextInput.text!
         let password:String = passwordTextInput.text!
         
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
-          guard let _ = self else { return }
-            
-            
-            
-        }
+        presenter.handleLogin(email: email, password: password)
+        
+//        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+//          guard let _ = self else { return }   
+//        }
     }
     
     

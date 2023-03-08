@@ -1,14 +1,25 @@
 
 
 import UIKit
+import FirebaseDatabase
 
 class UserSignInViewController: UIViewController {
     
+    let database: DatabaseReference
     let skyLogo = UIImageView()
     
     let signUpButton = UIButton()
     let logInButton = UIButton()
-
+    
+    init (database:DatabaseReference) {
+        self.database = database
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,7 +80,7 @@ class UserSignInViewController: UIViewController {
     }
     
     @objc func goToSignUpScreen() {
-        let signUpScreen = SignUpViewController()
+        let signUpScreen = SignUpViewController(database: database)
         navigationController?.pushViewController(signUpScreen, animated: true)
     }
     

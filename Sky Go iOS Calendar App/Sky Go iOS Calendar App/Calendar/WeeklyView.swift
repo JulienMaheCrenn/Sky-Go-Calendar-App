@@ -100,7 +100,7 @@ class WeeklyView: UIView {
             
         ])
         
-        //Days of Month
+        //Days of the Week
         
         addSubview(daysStackView)
         
@@ -109,70 +109,30 @@ class WeeklyView: UIView {
         daysStackView.alignment = .fill
         daysStackView.distribution = .fillEqually
         
-        let sundayLabel: UILabel = {
-            let day = UILabel()
-            day.text = "Sun"
-            day.font = UIFont.boldSystemFont(ofSize: 20)
-            day.textAlignment = .center
-            return day
-        }()
-
-        let mondayLabel: UILabel = {
-            let day = UILabel()
-            day.text = "Mon"
-            day.font = UIFont.boldSystemFont(ofSize: 20)
-            day.textAlignment = .center
-            return day
-        }()
-        
-        let tuesdayLabel: UILabel = {
-            let day = UILabel()
-            day.text = "Tue"
-            day.font = UIFont.boldSystemFont(ofSize: 20)
-            day.textAlignment = .center
-            return day
-        }()
-        
-        let wednesdayLabel: UILabel = {
-            let day = UILabel()
-            day.text = "Wed"
-            day.font = UIFont.boldSystemFont(ofSize: 20)
-            day.textAlignment = .center
-            return day
-        }()
-        
-        let thursdayLabel: UILabel = {
-            let day = UILabel()
-            day.text = "Thu"
-            day.font = UIFont.boldSystemFont(ofSize: 20)
-            day.textAlignment = .center
-            return day
-        }()
-        
-        let fridayLabel: UILabel = {
-            let day = UILabel()
-            day.text = "Fri"
-            day.font = UIFont.boldSystemFont(ofSize: 20)
-            day.textAlignment = .center
-            return day
-        }()
-        
-        let saturdayLabel: UILabel = {
-            let day = UILabel()
-            day.text = "Sat"
-            day.font = UIFont.boldSystemFont(ofSize: 20)
-            day.textAlignment = .center
-            return day
-        }()
-        
-        [sundayLabel,
-         mondayLabel,
-         tuesdayLabel,
-         wednesdayLabel,
-         thursdayLabel,
-         fridayLabel,
-         saturdayLabel,
-        ].forEach {daysStackView.addArrangedSubview($0)}
+        (0..<7).forEach { position in
+            let label = UILabel()
+            label.font = UIFont.boldSystemFont(ofSize: 20)
+            label.textAlignment = .center
+            
+            if  (position == 0) {
+                label.text = "Sun"
+            }else if (position == 1) {
+                label.text = "Mon"
+            }else if (position == 2) {
+                label.text = "Tue"
+            }else if (position == 3) {
+                label.text = "Wed"
+            }else if (position == 4) {
+                label.text = "Thu"
+            }else if (position == 5) {
+                label.text = "Fri"
+            }else if (position == 6) {
+                label.text = "Sat"
+            }
+            
+            daysStackView.addArrangedSubview(label)
+            
+        }
         
         daysStackView.translatesAutoresizingMaskIntoConstraints = false
         

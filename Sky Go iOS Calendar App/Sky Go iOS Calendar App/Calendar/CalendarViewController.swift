@@ -28,7 +28,7 @@ class CalendarViewController: UIViewController, CalendarPresenterDelegate, Weekl
     
     
     let userListView = UserListView()
-    let userAPI = UserAPI()
+//    let userAPI = UserAPI()
         
     var presenter: CalendarPresenter
     
@@ -97,7 +97,7 @@ class CalendarViewController: UIViewController, CalendarPresenterDelegate, Weekl
         locationDropDownButton.configuration?.imagePlacement = .trailing
 
         locationDropDown.anchorView = locationDropDownButton
-        locationDropDown.dataSource = ["Osterley", "Leeds", "Brentwood"]
+        locationDropDown.dataSource = presenter.populateLocationDropdown()
         locationDropDown.direction = .any
 
         locationDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
