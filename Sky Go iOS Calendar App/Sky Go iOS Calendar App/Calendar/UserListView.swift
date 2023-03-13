@@ -13,7 +13,7 @@ class UserListView: UIView, UITableViewDataSource, UITableViewDelegate {
 
 
     let userTableView = UITableView()
-    let usersArray: [User] = []
+    var usersArray: [User] = []
 
     public init () {
         super.init(frame: .zero)

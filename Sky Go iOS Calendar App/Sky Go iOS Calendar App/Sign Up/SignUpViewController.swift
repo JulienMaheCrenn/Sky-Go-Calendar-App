@@ -183,13 +183,12 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate,  
     @objc func handleSignUp() {
         let email:String = usernameTextInput.text!
         let password:String = passwordTextInput.text!
-        let profile: [String:Any] = [
-            "name": fullNameTextInput.text! as NSObject,
-            "jobTitle": jobTitleTextInput.text!,
-            "department": departmentButton.configuration?.title as Any,
-            "location": locationButton.configuration?.title as Any,
-        ]
-        presenter.signUpUser(email: email, password: password, profile: profile)
+
+        let profile: User = User(name: fullNameTextInput.text!,
+                                 jobTitle: jobTitleTextInput.text!,
+                                 department: departmentButton.configuration?.title ?? "Not Selected",
+                                 location: locationButton.configuration?.title ?? "Not Selected")
+        presenter.signUpUser(email: email, password: password, user: profile)
         
     }
     

@@ -152,6 +152,11 @@ class CalendarViewController: UIViewController, CalendarPresenterDelegate, Weekl
 //    }
     
     
+    func reloadUserTableView(users: [User]) {
+        userListView.usersArray = users
+        userListView.userTableView.reloadData()
+    }
+    
     func setWeekView(withDates: [Date]) {
         weeklyView.buttonArray.enumerated().forEach { index, button in
             button.configuration?.title = String(describing:presenter.dayOfMonth(date: withDates[index]))

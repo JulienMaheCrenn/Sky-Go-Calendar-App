@@ -17,6 +17,7 @@ protocol CalendarPresenterDelegate: AnyObject {
     func updateDateSelection (index:Int, selected:Bool)
     
     //UserListView Delegate Methods
+    func reloadUserTableView(users:[User])
 }
 
 
@@ -27,12 +28,12 @@ class CalendarPresenter {
     weak var delegate:CalendarPresenterDelegate?
     private var currentlyDisplayedDates: [Date]
     private var currentlySelectedDateIndex: Int = 0
-    var initialDate:String = ""
+    private var currentlyDisplayedUsers: [User]
     
     init (userUID:String, database:DatabaseReference) {
-//        initialDate = self.fullDateFormatter(date:Date())
-        calendarModel = CalendarModel(userUID: userUID, database: database, initialDate: initialDate )
+        calendarModel = CalendarModel(userUID: userUID, database: database)
         currentlyDisplayedDates = []
+        currentlyDisplayedUsers = []
         currentlySelectedDateIndex = weekDay(date: Date())-1
     }
     
@@ -52,6 +53,16 @@ class CalendarPresenter {
         
         //Date Selection Initialiser
         delegate?.updateDateSelection(index: currentlySelectedDateIndex, selected: true)
+        
+        //User List Initialiser
+        calendarModel.getUsers(date: fullDateFormatter(date: Date()), location: "Osterley", department: "Sky Go", completion: {result in
+            switch result {
+            case .success(let userArray):
+                self.currentlyDisplayedUsers = userArray
+            case .failure:
+                return
+            }
+        })
     }
     
     func dateButtonClicked (index: Int) {
@@ -60,8 +71,7 @@ class CalendarPresenter {
         delegate?.updateDateSelection(index: currentlySelectedDateIndex, selected: true)
         let month = monthLabelString(date: currentlyDisplayedDates[index])
         delegate?.updateMonthLabel(month: month)
-//        userAPI.getUsers(date: "\(WeeklyCalendarHelper().fullDateFormatter(date: currentlyDisplayedDates[index]))",
-//                         location: "Osterley")
+        getUsers(date: fullDateFormatter(date: currentlyDisplayedDates[index]), location: "Osterley", department: "Sky Go")
     }
     
     func forwardWeekButtonClicked() {
@@ -80,6 +90,17 @@ class CalendarPresenter {
         delegate?.setWeekView(withDates: currentlyDisplayedDates)
         let month = monthLabelString(date: currentlyDisplayedDates[currentlySelectedDateIndex])
         delegate?.updateMonthLabel(month: month)
+    }
+    
+    func getUsers(date:String, location:String, department:String) {
+        calendarModel.getUsers(date: date, location: location, department: department, completion: {result in
+            switch result {
+            case .success(let userArray):
+                self.delegate?.reloadUserTableView(users: userArray)
+            case .failure:
+                return
+            }
+        })
     }
     
     func updateLocation () {

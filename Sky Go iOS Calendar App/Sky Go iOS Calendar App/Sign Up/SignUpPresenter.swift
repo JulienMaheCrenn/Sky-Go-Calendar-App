@@ -20,8 +20,8 @@ struct SignUpPresenter {
         signUpModel = SignUpModel(database: database)
     }
     
-    func signUpUser (email:String, password:String, profile:[String:Any]) {
-        signUpModel.signUpUser(email: email, password: password, profile: profile)
+    func signUpUser (email:String, password:String, user:User) {
+        signUpModel.signUpUser(email: email, password: password, user: user)
     }
     
     func populateDepartmentDropdown() -> [String] {
