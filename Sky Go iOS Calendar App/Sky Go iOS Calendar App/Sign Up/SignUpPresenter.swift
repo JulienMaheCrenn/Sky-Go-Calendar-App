@@ -11,12 +11,12 @@ import FirebaseDatabase
 protocol SignUpPresenterDelegate: AnyObject {
 }
 
-struct SignUpPresenter {
+class SignUpPresenter {
+
     
-    weak var delegate:SignUpPresenterDelegate?
     private let signUpModel:SignUpModel
     
-    init (database:DatabaseReference) {
+    init (database:DatabaseReferenceProtocol) {
         signUpModel = SignUpModel(database: database)
     }
     
@@ -31,4 +31,6 @@ struct SignUpPresenter {
     func populateLocationDropdown() -> [String] {
         signUpModel.populateLocationDropdown()
     }
+
+    
 }

@@ -5,13 +5,13 @@ import FirebaseDatabase
 
 class UserSignInViewController: UIViewController {
     
-    let database: DatabaseReference
+    let database: DatabaseReferenceProtocol
     let skyLogo = UIImageView()
     
     let signUpButton = UIButton()
     let logInButton = UIButton()
     
-    init (database:DatabaseReference) {
+    init (database:DatabaseReferenceProtocol) {
         self.database = database
         super.init(nibName: nil, bundle: nil)
     }

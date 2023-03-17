@@ -9,12 +9,13 @@ import Foundation
 import FirebaseAuth
 import FirebaseDatabase
 
+
 class SignUpModel {
     
     
-    private let database:DatabaseReference
+    private let database:DatabaseReferenceProtocol
     
-    init (database:DatabaseReference) {
+    init (database:DatabaseReferenceProtocol) {
         self.database = database
     }
     

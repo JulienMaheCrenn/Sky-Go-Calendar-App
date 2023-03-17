@@ -24,10 +24,20 @@
 		E072F59D29B6504A000C0CB9 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E072F59C29B6504A000C0CB9 /* SignUpModel.swift */; };
 		E072F59F29B8DDD2000C0CB9 /* LogInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E072F59E29B8DDD2000C0CB9 /* LogInPresenter.swift */; };
 		E072F5A129B8DDE1000C0CB9 /* LogInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E072F5A029B8DDE1000C0CB9 /* LogInModel.swift */; };
+		E072F5AD29C33B78000C0CB9 /* OfficeDaysPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E072F5AC29C33B78000C0CB9 /* OfficeDaysPresenterTests.swift */; };
+		E072F5B429C33C19000C0CB9 /* MockOfficeDaysModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E072F5B329C33C19000C0CB9 /* MockOfficeDaysModel.swift */; };
+		E072F5BF29C35D62000C0CB9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E072F5BE29C35D62000C0CB9 /* FirebaseAuth */; };
+		E072F5C129C35D72000C0CB9 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = E072F5C029C35D72000C0CB9 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		E072F5C329C35D78000C0CB9 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = E072F5C229C35D78000C0CB9 /* FirebaseDatabase */; };
+		E072F5C529C35D83000C0CB9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E072F5C429C35D83000C0CB9 /* FirebaseFirestore */; };
+		E072F5C929C36E58000C0CB9 /* CalendarUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E072F5C829C36E58000C0CB9 /* CalendarUnitTests.swift */; };
+		E072F5CB29C36E6C000C0CB9 /* MockCalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E072F5CA29C36E6C000C0CB9 /* MockCalendarModel.swift */; };
+		E072F5CD29C372DF000C0CB9 /* MockCalendarPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E072F5CC29C372DF000C0CB9 /* MockCalendarPresenterDelegate.swift */; };
+		E072F5CF29C37ACE000C0CB9 /* DatabaseReferenceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E072F5CE29C37ACE000C0CB9 /* DatabaseReferenceProtocol.swift */; };
+		E072F5D129C37F32000C0CB9 /* MockDatabaseReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = E072F5D029C37F32000C0CB9 /* MockDatabaseReference.swift */; };
 		E08B087629ACDEA2009BF09E /* UserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B087529ACDEA2009BF09E /* UserListView.swift */; };
 		E08B087829ACF3B2009BF09E /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B087729ACF3B2009BF09E /* UserTableViewCell.swift */; };
 		E08B087A29B0AEDB009BF09E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B087929B0AEDB009BF09E /* User.swift */; };
-		E08B087C29B0B5D6009BF09E /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B087B29B0B5D6009BF09E /* UserAPI.swift */; };
 		E08B087F29B1072A009BF09E /* OfficeDaysModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B087E29B1072A009BF09E /* OfficeDaysModel.swift */; };
 		E08B088129B10A05009BF09E /* OfficeDaysPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B088029B10A05009BF09E /* OfficeDaysPresenter.swift */; };
 		E08B088329B20F1A009BF09E /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B088229B20F1A009BF09E /* ProfileModel.swift */; };
@@ -43,6 +53,16 @@
 		E0AA643A299A681C008B8864 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = E0AA6439299A681C008B8864 /* FirebaseDatabase */; };
 		E0AA643C299D12B3008B8864 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AA643B299D12B2008B8864 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E072F5AE29C33B78000C0CB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E0A27EEA29928C1600351EDF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E0A27EF129928C1600351EDF;
+			remoteInfo = "Sky Go iOS Calendar App";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4AE96BD800766BE0BCE1C630 /* Pods_Sky_Go_iOS_Calendar_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sky_Go_iOS_Calendar_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,10 +81,17 @@
 		E072F59C29B6504A000C0CB9 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		E072F59E29B8DDD2000C0CB9 /* LogInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInPresenter.swift; sourceTree = "<group>"; };
 		E072F5A029B8DDE1000C0CB9 /* LogInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInModel.swift; sourceTree = "<group>"; };
+		E072F5AA29C33B77000C0CB9 /* Sky Go iOS Calendar App Unit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sky Go iOS Calendar App Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E072F5AC29C33B78000C0CB9 /* OfficeDaysPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeDaysPresenterTests.swift; sourceTree = "<group>"; };
+		E072F5B329C33C19000C0CB9 /* MockOfficeDaysModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOfficeDaysModel.swift; sourceTree = "<group>"; };
+		E072F5C829C36E58000C0CB9 /* CalendarUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarUnitTests.swift; sourceTree = "<group>"; };
+		E072F5CA29C36E6C000C0CB9 /* MockCalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCalendarModel.swift; sourceTree = "<group>"; };
+		E072F5CC29C372DF000C0CB9 /* MockCalendarPresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCalendarPresenterDelegate.swift; sourceTree = "<group>"; };
+		E072F5CE29C37ACE000C0CB9 /* DatabaseReferenceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseReferenceProtocol.swift; sourceTree = "<group>"; };
+		E072F5D029C37F32000C0CB9 /* MockDatabaseReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDatabaseReference.swift; sourceTree = "<group>"; };
 		E08B087529ACDEA2009BF09E /* UserListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListView.swift; sourceTree = "<group>"; };
 		E08B087729ACF3B2009BF09E /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		E08B087929B0AEDB009BF09E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		E08B087B29B0B5D6009BF09E /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		E08B087E29B1072A009BF09E /* OfficeDaysModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeDaysModel.swift; sourceTree = "<group>"; };
 		E08B088029B10A05009BF09E /* OfficeDaysPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeDaysPresenter.swift; sourceTree = "<group>"; };
 		E08B088229B20F1A009BF09E /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
@@ -83,6 +110,17 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E072F5A729C33B77000C0CB9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E072F5C329C35D78000C0CB9 /* FirebaseDatabase in Frameworks */,
+				E072F5C529C35D83000C0CB9 /* FirebaseFirestore in Frameworks */,
+				E072F5BF29C35D62000C0CB9 /* FirebaseAuth in Frameworks */,
+				E072F5C129C35D72000C0CB9 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E0A27EEF29928C1600351EDF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -162,10 +200,40 @@
 			path = "Log In";
 			sourceTree = "<group>";
 		};
+		E072F5AB29C33B78000C0CB9 /* Sky Go iOS Calendar App Unit Tests */ = {
+			isa = PBXGroup;
+			children = (
+				E072F5C729C36E3B000C0CB9 /* CalendarTests */,
+				E072F5C629C36D9F000C0CB9 /* OfficeDaysTests */,
+			);
+			path = "Sky Go iOS Calendar App Unit Tests";
+			sourceTree = "<group>";
+		};
+		E072F5C629C36D9F000C0CB9 /* OfficeDaysTests */ = {
+			isa = PBXGroup;
+			children = (
+				E072F5AC29C33B78000C0CB9 /* OfficeDaysPresenterTests.swift */,
+				E072F5B329C33C19000C0CB9 /* MockOfficeDaysModel.swift */,
+			);
+			path = OfficeDaysTests;
+			sourceTree = "<group>";
+		};
+		E072F5C729C36E3B000C0CB9 /* CalendarTests */ = {
+			isa = PBXGroup;
+			children = (
+				E072F5C829C36E58000C0CB9 /* CalendarUnitTests.swift */,
+				E072F5CA29C36E6C000C0CB9 /* MockCalendarModel.swift */,
+				E072F5CC29C372DF000C0CB9 /* MockCalendarPresenterDelegate.swift */,
+				E072F5D029C37F32000C0CB9 /* MockDatabaseReference.swift */,
+			);
+			path = CalendarTests;
+			sourceTree = "<group>";
+		};
 		E0A27EE929928C1600351EDF = {
 			isa = PBXGroup;
 			children = (
 				E0A27EF429928C1600351EDF /* Sky Go iOS Calendar App */,
+				E072F5AB29C33B78000C0CB9 /* Sky Go iOS Calendar App Unit Tests */,
 				E0A27EF329928C1600351EDF /* Products */,
 				E0AA6438299A681C008B8864 /* Frameworks */,
 				F7B30FCD820BCE309898E970 /* Pods */,
@@ -176,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				E0A27EF229928C1600351EDF /* Sky Go iOS Calendar App.app */,
+				E072F5AA29C33B77000C0CB9 /* Sky Go iOS Calendar App Unit Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -193,7 +262,7 @@
 				E0A27EF729928C1600351EDF /* SceneDelegate.swift */,
 				E05E7499299FA0D500D5CECF /* TabBarController.swift */,
 				E05582022995265A00E08769 /* UserSignInViewController.swift */,
-				E08B087B29B0B5D6009BF09E /* UserAPI.swift */,
+				E072F5CE29C37ACE000C0CB9 /* DatabaseReferenceProtocol.swift */,
 				E0A27EFE29928C1900351EDF /* Assets.xcassets */,
 				E0A27F0029928C1900351EDF /* LaunchScreen.storyboard */,
 				E0A27F0329928C1900351EDF /* Info.plist */,
@@ -222,6 +291,30 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E072F5A929C33B77000C0CB9 /* Sky Go iOS Calendar App Unit Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E072F5B029C33B78000C0CB9 /* Build configuration list for PBXNativeTarget "Sky Go iOS Calendar App Unit Tests" */;
+			buildPhases = (
+				E072F5A629C33B77000C0CB9 /* Sources */,
+				E072F5A729C33B77000C0CB9 /* Frameworks */,
+				E072F5A829C33B77000C0CB9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E072F5AF29C33B78000C0CB9 /* PBXTargetDependency */,
+			);
+			name = "Sky Go iOS Calendar App Unit Tests";
+			packageProductDependencies = (
+				E072F5BE29C35D62000C0CB9 /* FirebaseAuth */,
+				E072F5C029C35D72000C0CB9 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				E072F5C229C35D78000C0CB9 /* FirebaseDatabase */,
+				E072F5C429C35D83000C0CB9 /* FirebaseFirestore */,
+			);
+			productName = "Sky Go iOS Calendar App Unit Tests";
+			productReference = E072F5AA29C33B77000C0CB9 /* Sky Go iOS Calendar App Unit Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		E0A27EF129928C1600351EDF /* Sky Go iOS Calendar App */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E0A27F0629928C1900351EDF /* Build configuration list for PBXNativeTarget "Sky Go iOS Calendar App" */;
@@ -257,6 +350,10 @@
 				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
+					E072F5A929C33B77000C0CB9 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = E0A27EF129928C1600351EDF;
+					};
 					E0A27EF129928C1600351EDF = {
 						CreatedOnToolsVersion = 14.1;
 					};
@@ -279,11 +376,19 @@
 			projectRoot = "";
 			targets = (
 				E0A27EF129928C1600351EDF /* Sky Go iOS Calendar App */,
+				E072F5A929C33B77000C0CB9 /* Sky Go iOS Calendar App Unit Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E072F5A829C33B77000C0CB9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E0A27EF029928C1600351EDF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -339,6 +444,19 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E072F5A629C33B77000C0CB9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E072F5C929C36E58000C0CB9 /* CalendarUnitTests.swift in Sources */,
+				E072F5B429C33C19000C0CB9 /* MockOfficeDaysModel.swift in Sources */,
+				E072F5AD29C33B78000C0CB9 /* OfficeDaysPresenterTests.swift in Sources */,
+				E072F5CD29C372DF000C0CB9 /* MockCalendarPresenterDelegate.swift in Sources */,
+				E072F5D129C37F32000C0CB9 /* MockDatabaseReference.swift in Sources */,
+				E072F5CB29C36E6C000C0CB9 /* MockCalendarModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E0A27EEE29928C1600351EDF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -346,7 +464,6 @@
 				E08B088529B20F29009BF09E /* ProfilePresenter.swift in Sources */,
 				E05582012995257800E08769 /* LogInViewController.swift in Sources */,
 				E05E749C299FE43B00D5CECF /* Appointment.swift in Sources */,
-				E08B087C29B0B5D6009BF09E /* UserAPI.swift in Sources */,
 				E08B088129B10A05009BF09E /* OfficeDaysPresenter.swift in Sources */,
 				E08B087629ACDEA2009BF09E /* UserListView.swift in Sources */,
 				E072F59B29B6502A000C0CB9 /* SignUpPresenter.swift in Sources */,
@@ -360,6 +477,7 @@
 				E05582032995265A00E08769 /* UserSignInViewController.swift in Sources */,
 				E08B088729B23E87009BF09E /* FirebaseError.swift in Sources */,
 				E05E7498299F973A00D5CECF /* OfficeDaysViewController.swift in Sources */,
+				E072F5CF29C37ACE000C0CB9 /* DatabaseReferenceProtocol.swift in Sources */,
 				E0A27EF629928C1600351EDF /* AppDelegate.swift in Sources */,
 				E0AA643C299D12B3008B8864 /* ProfileViewController.swift in Sources */,
 				E08B088329B20F1A009BF09E /* ProfileModel.swift in Sources */,
@@ -375,6 +493,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		E072F5AF29C33B78000C0CB9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E0A27EF129928C1600351EDF /* Sky Go iOS Calendar App */;
+			targetProxy = E072F5AE29C33B78000C0CB9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		E0A27F0029928C1900351EDF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -387,6 +513,40 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E072F5B129C33B78000C0CB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Julien-Mahe-Crenn.Sky-Go-iOS-Calendar-App-Unit-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sky Go iOS Calendar App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Sky Go iOS Calendar App";
+			};
+			name = Debug;
+		};
+		E072F5B229C33B78000C0CB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Julien-Mahe-Crenn.Sky-Go-iOS-Calendar-App-Unit-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sky Go iOS Calendar App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Sky Go iOS Calendar App";
+			};
+			name = Release;
+		};
 		E0A27F0429928C1900351EDF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -558,6 +718,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E072F5B029C33B78000C0CB9 /* Build configuration list for PBXNativeTarget "Sky Go iOS Calendar App Unit Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E072F5B129C33B78000C0CB9 /* Debug */,
+				E072F5B229C33B78000C0CB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E0A27EED29928C1600351EDF /* Build configuration list for PBXProject "Sky Go iOS Calendar App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -601,6 +770,26 @@
 			productName = FirebaseAuth;
 		};
 		E05581FA2993EF3D00E08769 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E05581F52993EF3D00E08769 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		E072F5BE29C35D62000C0CB9 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E05581F52993EF3D00E08769 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		E072F5C029C35D72000C0CB9 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E05581F52993EF3D00E08769 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		E072F5C229C35D78000C0CB9 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E05581F52993EF3D00E08769 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		E072F5C429C35D83000C0CB9 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E05581F52993EF3D00E08769 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;

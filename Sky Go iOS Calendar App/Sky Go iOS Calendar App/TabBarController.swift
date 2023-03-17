@@ -11,11 +11,13 @@ import FirebaseDatabase
 class TabBarController: UITabBarController {
     
     private let userUID:String
-    private let database:DatabaseReference
+    private let database:DatabaseReferenceProtocol
+    private let user:User
     
-    public init (userUID:String, database: DatabaseReference) {
+    public init (userUID:String, database: DatabaseReferenceProtocol, user:User) {
         self.userUID = userUID
         self.database = database
+        self.user = user
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -32,7 +34,7 @@ class TabBarController: UITabBarController {
         let officeDays = UITabBarItem(title: "Office Days", image: UIImage(systemName: "list.dash"), tag: 1)
 
         //Getting TabBar ViewControllers
-        let calendarVC =  CalendarViewController(userUID: userUID, database: database)
+        let calendarVC =  CalendarViewController(userUID: userUID, database: database, user:user)
         calendarVC.title = "Calendar"
         
         let officeDaysVC = OfficeDaysViewController()

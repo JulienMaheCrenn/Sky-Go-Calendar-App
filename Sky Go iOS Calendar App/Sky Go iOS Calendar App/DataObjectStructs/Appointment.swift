@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Appointment {
-    let date:String?
-    let location:String?
+struct Appointment: Equatable {
+    let date:String
+    let location:String
 }

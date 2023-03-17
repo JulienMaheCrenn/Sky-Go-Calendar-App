@@ -9,7 +9,11 @@ import Foundation
 import FirebaseAuth
 import FirebaseDatabase
 
-struct OfficeDaysModel {
+protocol OfficeDaysModelProtocol {
+    func setupAppointmentsListener (completion: @escaping (([Appointment]) -> () ))
+}
+
+struct OfficeDaysModel: OfficeDaysModelProtocol {
     private let database = Database.database(url: "https://sky-go-hybrid-calendar-app-default-rtdb.europe-west1.firebasedatabase.app").reference()
     
     func setupAppointmentsListener (completion: @escaping (([Appointment]) -> () )) {

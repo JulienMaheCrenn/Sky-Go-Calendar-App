@@ -29,7 +29,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate,  
     let locationDropdown = DropDown()
     let signUpButton = UIButton()
     
-    init(database:DatabaseReference) {
+    init(database:DatabaseReferenceProtocol) {
         presenter = SignUpPresenter(database: database)
         super.init(nibName: nil, bundle: nil)
     }
@@ -40,7 +40,6 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate,  
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.delegate = self
         title = "Sign Up"
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -183,7 +182,12 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate,  
     @objc func handleSignUp() {
         let email:String = usernameTextInput.text!
         let password:String = passwordTextInput.text!
-
+//        let profile: [String:Any] = [
+//            "name": fullNameTextInput.text! as NSObject,
+//            "jobTitle": jobTitleTextInput.text!,
+//            "department": departmentButton.configuration?.title as Any,
+//            "location": locationButton.configuration?.title as Any,
+//        ]
         let profile: User = User(name: fullNameTextInput.text!,
                                  jobTitle: jobTitleTextInput.text!,
                                  department: departmentButton.configuration?.title ?? "Not Selected",

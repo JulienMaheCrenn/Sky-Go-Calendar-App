@@ -70,12 +70,8 @@ class AppointmentTableViewCell: UITableViewCell {
     var appointment:Appointment? {
         didSet{
             guard let appointmentItem = appointment else {return}
-            if let date = appointmentItem.date {
-                dateLabel.text = date
-            }
-            if let location = appointmentItem.location {
-                locationLabel.text = location
-            }
+                dateLabel.text = appointmentItem.date
+                locationLabel.text = appointmentItem.location
         }
     }
     

@@ -12,10 +12,14 @@ import FirebaseDatabase
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    let database:DatabaseReference = Database.database(url:"https://sky-go-hybrid-calendar-app-default-rtdb.europe-west1.firebasedatabase.app").reference()
-    
-    
-    
+    let database:DatabaseReferenceProtocol = Database.database(url:"https://sky-go-hybrid-calendar-app-default-rtdb.europe-west1.firebasedatabase.app").reference()
+ 
+    var userUID:String = ""
+    var profile:User? {
+        didSet {
+            navigationHelper(user:profile)
+        }
+    }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -28,13 +32,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         
         Auth.auth().addStateDidChangeListener { auth, user in
-            if let userUID = Auth.auth().currentUser?.uid {
-                let database = self.database
-                let tabBarViewController = TabBarController(userUID: userUID, database: database)
-                self.window?.rootViewController = tabBarViewController
+            if let userUID = Auth.auth().currentUser?.uid{
+                self.userUID = userUID
+                let profileModel = ProfileModel(userUID: userUID)
+                profileModel.setupUserListener(completion: {result in
+                    switch result {
+                    case .success(let user):
+                        self.profile = user
+                    case .failure:
+                        self.profile = nil
+                    }
+                })
             } else {
-                let signInNavigationController = UINavigationController(rootViewController: UserSignInViewController(database: self.database))
-                self.window?.rootViewController = signInNavigationController
+                self.userUID = ""
+                self.profile = nil
             }
         }
         
@@ -42,6 +53,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.backgroundColor = .systemBackground
         
     }
+    
+    private func navigationHelper(user:User?) {
+        if let user {
+            let database = self.database
+            let tabBarViewController = TabBarController(userUID: userUID, database: database, user:user)
+            window?.rootViewController = tabBarViewController
+        } else {
+            let signInNavigationController = UINavigationController(rootViewController: UserSignInViewController(database: self.database))
+            window?.rootViewController = signInNavigationController
+        }
+    }
+                                                                               
 
 }
 

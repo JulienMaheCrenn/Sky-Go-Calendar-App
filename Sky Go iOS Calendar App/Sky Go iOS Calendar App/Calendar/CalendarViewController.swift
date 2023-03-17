@@ -14,7 +14,7 @@ class CalendarViewController: UIViewController, CalendarPresenterDelegate, Weekl
     let scrollView = UIScrollView()
     let contentStackView = UIStackView()
     
-    let selectDateButton = UIButton()
+    let officeBookingButton = UIButton()
     let showProfileButton = UIBarButtonItem()
     
     let dateSelectionText = UITextField()
@@ -28,12 +28,11 @@ class CalendarViewController: UIViewController, CalendarPresenterDelegate, Weekl
     
     
     let userListView = UserListView()
-//    let userAPI = UserAPI()
         
     var presenter: CalendarPresenter
     
-    init (userUID: String, database:DatabaseReference) {
-        presenter = CalendarPresenter(userUID: userUID, database: database)
+    init (userUID: String, database:DatabaseReferenceProtocol, user:User) {
+        presenter = CalendarPresenter(userUID: userUID, user:user, model: CalendarModel(userUID: userUID, database: database))
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -50,7 +49,9 @@ class CalendarViewController: UIViewController, CalendarPresenterDelegate, Weekl
         
         setupWeekView()
         setupLocationDropDown()
+        setupOfficeBookingButton()
         setupUserListView()
+
         
         //Dropdown Updater
         presenter.updateLocation()
@@ -80,10 +81,10 @@ class CalendarViewController: UIViewController, CalendarPresenterDelegate, Weekl
         userListView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            userListView.topAnchor.constraint(equalTo: locationDropDownButton.bottomAnchor, constant: 10),
+            userListView.topAnchor.constraint(equalTo: locationDropDownButton.bottomAnchor),
             userListView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             userListView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            userListView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            userListView.bottomAnchor.constraint(equalTo: officeBookingButton.topAnchor, constant: -10)
         ])
     }
     
@@ -102,6 +103,7 @@ class CalendarViewController: UIViewController, CalendarPresenterDelegate, Weekl
 
         locationDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             self.locationDropDownButton.configuration?.title = "\(item)   "
+            presenter.locationChanged(location: item)
         }
 
         locationDropDownButton.addTarget(self, action: #selector(handleLocationDropDown), for: .touchUpInside)
@@ -136,20 +138,28 @@ class CalendarViewController: UIViewController, CalendarPresenterDelegate, Weekl
         self.locationDropDownButton.configuration?.title = location
     }
 
-//    func setupButtons() {
-//
-//
-//        selectDateButton.configuration = .filled()
-//        selectDateButton.configuration?.baseBackgroundColor = .systemPink
-//        selectDateButton.configuration?.baseForegroundColor = .black
-//        selectDateButton.configuration?.title = "Book Selected Office Day"
-//        selectDateButton.configuration?.titleAlignment = .center
-//
-//
-//        selectDateButton.addTarget(self, action: #selector(handleOfficeDayBooking), for: .touchUpInside)
-//
-//
-//    }
+    func setupOfficeBookingButton() {
+        view.addSubview(officeBookingButton)
+
+        officeBookingButton.configuration = .filled()
+        officeBookingButton.configuration?.baseBackgroundColor = .systemBlue
+        officeBookingButton.configuration?.baseForegroundColor = .white
+        officeBookingButton.configuration?.title = "Book Selected Office Day"
+        officeBookingButton.configuration?.titleAlignment = .center
+
+
+        officeBookingButton.addTarget(self, action: #selector(handleOfficeDayBooking), for: .touchUpInside)
+        officeBookingButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            officeBookingButton.heightAnchor.constraint(equalToConstant: 40),
+            officeBookingButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            officeBookingButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            officeBookingButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6)
+        ])
+
+
+    }
     
     
     func reloadUserTableView(users: [User]) {
@@ -185,7 +195,8 @@ class CalendarViewController: UIViewController, CalendarPresenterDelegate, Weekl
     }
 
     
-//    @objc func handleOfficeDayBooking() {
+    @objc func handleOfficeDayBooking() {
+        presenter.handleOfficeDayBooking()
 //
 //
 //        let officeDate = dateSelectionText.text!
@@ -209,6 +220,12 @@ class CalendarViewController: UIViewController, CalendarPresenterDelegate, Weekl
 //        } else {
 //            return
 //        }
-//    }
+    }
+    
+    func presentAlertModal(messageText: String) {
+        let alertController = UIAlertController(title: "Server Response", message: messageText, preferredStyle: UIAlertController.Style.alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default))
+        present(alertController, animated: true)
+    }
 
 }

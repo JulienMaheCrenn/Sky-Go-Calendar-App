@@ -7,14 +7,23 @@
 
 import Foundation
 import FirebaseDatabase
+import Combine
 
-struct CalendarModel {
+protocol CalendarModelProtocol {
+    func getUsers ( date:String, location:String, department:String, completion: @escaping (Result <[User], FirebaseError>) -> ())
+    func handleOfficeDayBooking( date:String, location:String, department:String, completion: @escaping ((Result <String, FirebaseError>) -> () ) )
+    func updateUserLocation (completion: @escaping (Result < String, FirebaseError >) -> ())
+    func populateLocationDropdown() -> [String]
+}
 
-    private let database:DatabaseReference
+class CalendarModel: CalendarModelProtocol {
+
+    private let database:DatabaseReferenceProtocol
     private let userUID:String
+    private var cancellable:AnyCancellable?
 
     
-    init(userUID:String, database: DatabaseReference) {
+    init(userUID:String, database: DatabaseReferenceProtocol) {
         self.userUID = userUID
         self.database = database
     }
@@ -23,67 +32,49 @@ struct CalendarModel {
         getUserUIDs(date: date, location: location, department: department, completion: {result in
             switch result {
             case .success(let userUIDArray):
+
+                let futures = userUIDArray.map { self.makeAFuturePublisher(for: $0) }
                 var userArray:[User] = []
                 
-//                let userUID = userUIDArray[0]
-//                database.child("users").child(userUID).observeSingleEvent(of: .value, with: {snapshot in
-//                    guard let value = snapshot.value as? NSObject else {
-//                        completion(.failure(.standard))
-//                        return
-//                    }
-//                    let currentUser = User(name: populateUserStruct(value: value, key: "name"),
-//                                           jobTitle:populateUserStruct(value: value, key: "jobTitle"),
-//                                           department: populateUserStruct(value: value, key:"department"),
-//                                           location: populateUserStruct(value: value, key: "location")
-//                    )
-//
-//                    userArray.append(currentUser)
-//                    print(userArray)
-//                })
-                
-                for (index, userUID) in userUIDArray.enumerated() {
-                    database.child("users").child(userUID).observeSingleEvent(of: .value, with: {snapshot in
-                        guard let value = snapshot.value as? NSObject else {
-                            completion(.failure(.standard))
-                            return
-                        }
-                        let currentUser = User(name: populateUserStruct(value: value, key: "name"),
-                                               jobTitle:populateUserStruct(value: value, key: "jobTitle"),
-                                               department: populateUserStruct(value: value, key:"department"),
-                                               location: populateUserStruct(value: value, key: "location")
-                        )
-                        
-                        userArray.append(currentUser)
+                self.cancellable = Publishers.MergeMany(futures).sink (receiveCompletion:{ completed in
+                    switch completed {
+                    case .finished:
                         print(userArray)
-                        if index == userUIDArray.count-1 {
-                            completion(.success(userArray))
-                        }
-                        
-                    })
-                }
-                
-//                for userUID in userUIDArray {
-//                    database.child("users").child(userUID).observeSingleEvent(of: .value, with: {snapshot in
-//                                        guard let value = snapshot.value as? NSObject else {
-//                                            completion(.failure(.standard))
-//                                            return
-//                                        }
-//                        let currentUser = User(name: populateUserStruct(value: value, key: "name"),
-//                                               jobTitle:populateUserStruct(value: value, key: "jobTitle"),
-//                                               department: populateUserStruct(value: value, key:"department"),
-//                                               location: populateUserStruct(value: value, key: "location")
-//                                               )
-//
-//                        userArray.append(currentUser)
-//                        print(userArray)
-//                        completion(.success(userArray))
-//                    })
-//                }
-                
+                        completion(.success(userArray))
+                    case .failure(let failure):
+                        print(failure)
+                        completion(.failure(failure))
+                    }
+                }, receiveValue: { value in
+                    print(value)
+                    userArray.append(value)
+                })
+
             case .failure:
-                return
+                completion(.success([]))
             }
         })
+    }
+    
+    private func makeAFuturePublisher(for userUID: String) -> Future<User, FirebaseError> {
+        print("Make a future publisher called")
+        
+       return Future<User, FirebaseError> { promise in
+           self.database.child("users").child(userUID).observeSingleEvent(of: .value, with: {snapshot in
+                guard let value = snapshot.value as? NSObject else {
+                promise(.failure(.standard))
+                return
+            }
+               let currentUser = User(name: self.populateUserStruct(value: value, key: "name"),
+                                      jobTitle:self.populateUserStruct(value: value, key: "jobTitle"),
+                                      department: self.populateUserStruct(value: value, key:"department"),
+                                      location: self.populateUserStruct(value: value, key: "location")
+                )
+                
+                promise(.success(currentUser))
+            }
+                                                                      
+           )}
     }
     
     private func getUserUIDs (date:String, location: String, department: String, completion: @escaping (Result <[String], FirebaseError>) -> () ) {
@@ -107,6 +98,33 @@ struct CalendarModel {
         return value
     }
 
+    func handleOfficeDayBooking( date:String, location:String, department:String, completion: @escaping ((Result <String, FirebaseError>) -> () ) ) {
+
+        let appointmentUser: [String:Any] = ["\(self.userUID)": true]
+        let userAppointment: [String:Any] = ["\(date)": "\(location)"]
+        
+        self.database.child("appointments").child(date).child(location).child(department).updateChildValues(appointmentUser)
+        self.database.child("users").child(self.userUID).child("appointments").updateChildValues(userAppointment)
+        
+        checkBooking(date: date, location: location, department: department, completion: {result in
+            switch result {
+            case .success:
+                completion(.success("Booking Successful"))
+            case .failure:
+                completion(.success("There was an error booking your office day, please try again"))
+            }
+        })
+    }
+    
+    private func checkBooking(date:String, location:String, department:String, completion: @escaping (Result <Bool, FirebaseError>) -> () ) {
+        database.child("appointments").child(date).child(location).child(department).child(self.userUID).observeSingleEvent(of: .value, with: {snapshot in
+            guard let appointment = snapshot.value as? Bool else {
+                completion(.failure(.standard))
+                return
+            }
+            completion(.success(appointment))
+        })
+    }
     
     func updateUserLocation (completion: @escaping (Result < String, FirebaseError >) -> ()) {
         self.database.child("users").child(userUID).observeSingleEvent(of: .value, with: {snapshot in
