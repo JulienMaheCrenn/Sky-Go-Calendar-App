@@ -11,6 +11,8 @@ import Foundation
 class MockCalendarPresenterDelegate:CalendarPresenterDelegate {
     
     var location:String = ""
+    var userArray:[User] = []
+    var alertMessage:String = ""
     
     func updateLocation(location: String) {
         self.location = location
@@ -29,11 +31,11 @@ class MockCalendarPresenterDelegate:CalendarPresenterDelegate {
     }
     
     func reloadUserTableView(users: [User]) {
-        
+        self.userArray = users
     }
     
     func presentAlertModal(messageText: String) {
-        
+        self.alertMessage = messageText
     }
     
     
