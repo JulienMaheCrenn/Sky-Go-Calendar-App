@@ -127,7 +127,7 @@ class CalendarPresenter {
             case .success(let userArray):
                 self.delegate?.reloadUserTableView(users: userArray)
             case .failure:
-                return
+                self.delegate?.presentAlertModal(messageText: "No users have booked into the office on this day.")
             }
         })
     }
